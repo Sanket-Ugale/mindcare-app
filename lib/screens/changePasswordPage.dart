@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
-import 'package:mindcare/screens/forgotPass.dart';
-import 'package:mindcare/screens/signUpPage.dart';
 
-class loginPage extends StatefulWidget {
-  loginPage({super.key});
-  bool isEmail = false;
-  // bool isRememberClicked=false;
+class changePasswordPage extends StatelessWidget {
+  const changePasswordPage({super.key});
 
-  @override
-  State<loginPage> createState() => _loginPageState();
-}
-
-class _loginPageState extends State<loginPage> {
-  bool isRememberClicked=true;
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       // appBar: AppBar(title: Text("LOGIN", style: TextStyle(letterSpacing: 5),),centerTitle: true,),
@@ -64,10 +53,6 @@ class _loginPageState extends State<loginPage> {
                             )
                           ],
                         ),
-                        Text(
-                          "Skip",
-                          style: TextStyle(color: color1, fontSize: 40.sp),
-                        )
                       ],
                     ),
                   ),
@@ -85,13 +70,13 @@ class _loginPageState extends State<loginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Welcome",
+                          "Change",
                           style: TextStyle(
                               color: Colors.amberAccent, fontSize: 130.sp),
                           textAlign: TextAlign.left,
                         ),
                         Text(
-                          "aboard!",
+                          "Password",
                           style: TextStyle(
                               color: lightTextColor1, fontSize: 125.sp),
                           textAlign: TextAlign.left,
@@ -99,15 +84,15 @@ class _loginPageState extends State<loginPage> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(30.r),
-                    child: Text(
-                      "Don't worry, Mindcare take the security of your information seriously and keep it safe.",
-                      style: TextStyle(color: lightTextColor2),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.all(30.r),
+                  //   child: Text(
+                  //     "Don't worry, We got you! As long you still remember your email",
+                  //     style: TextStyle(color: lightTextColor2),
+                  //   ),
+                  // ),
                   Container(
-                    margin: EdgeInsets.only(top: 10.h, left: 50.w, right: 50.w),
+                    margin: EdgeInsets.only(top: 40.h, left: 50.w, right: 50.w),
                     // padding:  EdgeInsets.only(top: 7, left: 20, bottom: 4),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100.r),
@@ -118,7 +103,7 @@ class _loginPageState extends State<loginPage> {
                       style: TextStyle(color: color1),
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
-                          Icons.person,
+                          Icons.email_outlined,
                         ),
                         prefixIconColor: color1,
                         enabledBorder: OutlineInputBorder(
@@ -149,7 +134,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 30.h, left: 50.w, right: 50.w),
+                    margin: EdgeInsets.only(top: 40.h, left: 50.w, right: 50.w),
                     // padding:  EdgeInsets.only(top: 7, left: 20, bottom: 4),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100.r),
@@ -159,12 +144,10 @@ class _loginPageState extends State<loginPage> {
                       cursorColor: color1,
                       style: TextStyle(color: color1),
                       decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        prefixIconColor: color1,
-                        suffixIcon: const Icon(
-                          Icons.remove_red_eye_rounded,
+                        prefixIcon: const Icon(
+                          Icons.lock_outlined,
                         ),
-                        suffixIconColor: color1,
+                        prefixIconColor: color1,
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100.r),
                           borderSide: const BorderSide(
@@ -175,11 +158,11 @@ class _loginPageState extends State<loginPage> {
                           borderSide: const BorderSide(
                               color: Color.fromARGB(0, 255, 255, 255)),
                         ),
-                        // labelText: "Password",
-                        // labelStyle:  TextStyle(color: color1),
-                        hintText: "Password",
+                        // labelText: "Email",
+                        hintText: "Old Password",
                         hintStyle: TextStyle(color: color1),
-                        // icon:  Icon(Icons.lock),
+                        labelStyle: TextStyle(color: color1),
+                        // icon:  Icon(Icons.person),
                         // iconColor: color1,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(100.r)),
@@ -192,55 +175,99 @@ class _loginPageState extends State<loginPage> {
                       },
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                                  isRememberClicked=!isRememberClicked;
-                                });
-                        },
-                        child: Row(
-                          children: [
-                            Checkbox(
-                              overlayColor:MaterialStatePropertyAll(Colors.amber),
-                              checkColor: Colors.white,
-                              activeColor: Colors.green.shade300,
-                              value: isRememberClicked,
-                              splashRadius: 1,
-                              onChanged: (value) {
-                                setState(() {
-                                  isRememberClicked=!isRememberClicked;
-                                });
-                              },
-                              semanticLabel: "Remember Me",
-                            ),
-                            Text(
-                              "Remember Me",
-                              style: TextStyle(color: color1),
-                            )
-                          ],
+                  Container(
+                    margin: EdgeInsets.only(top: 40.h, left: 50.w, right: 50.w),
+                    // padding:  EdgeInsets.only(top: 7, left: 20, bottom: 4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100.r),
+                        color: const Color.fromARGB(124, 134, 134, 134)),
+                    child: TextFormField(
+                      // controller: _loginEmailController,
+                      cursorColor: color1,
+                      style: TextStyle(color: color1),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(
+                          Icons.lock,
                         ),
+                        prefixIconColor: color1,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(0, 255, 255, 255)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(0, 255, 255, 255)),
+                        ),
+                        // labelText: "Email",
+                        hintText: "New Password",
+                        hintStyle: TextStyle(color: color1),
+                        labelStyle: TextStyle(color: color1),
+                        // icon:  Icon(Icons.person),
+                        // iconColor: color1,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100.r)),
                       ),
-                      InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    forgotpassPage(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "Forgot Password ?",
-                            style: TextStyle(color: Colors.amber),
-                          )),
-                    ],
+                      validator: (value) {
+                        // if (!value!.isEmail) {
+                        //   return "Email address is required";
+                        // }
+                        return null;
+                      },
+                    ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 80.h, bottom: 10.h),
+                    margin: EdgeInsets.only(top: 40.h, left: 50.w, right: 50.w),
+                    // padding:  EdgeInsets.only(top: 7, left: 20, bottom: 4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100.r),
+                        color: const Color.fromARGB(124, 134, 134, 134)),
+                    child: TextFormField(
+                      // controller: _loginEmailController,
+                      cursorColor: color1,
+                      style: TextStyle(color: color1),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(
+                          Icons.lock,
+                        ),
+                        prefixIconColor: color1,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(0, 255, 255, 255)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(100.r),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(0, 255, 255, 255)),
+                        ),
+                        // labelText: "Email",
+                        hintText: "Confirm New Password",
+                        hintStyle: TextStyle(color: color1),
+                        labelStyle: TextStyle(color: color1),
+                        // icon:  Icon(Icons.person),
+                        // iconColor: color1,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100.r)),
+                      ),
+                      validator: (value) {
+                        // if (!value!.isEmail) {
+                        //   return "Email address is required";
+                        // }
+                        return null;
+                      },
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 380.h,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: 80.h, bottom: 50.h, left: 50.w, right: 50.h),
+                    height: 150.h,
+                    width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       onPressed: () {
                         //  if (_loginFormKey.currentState!.validate()) {
@@ -249,106 +276,15 @@ class _loginPageState extends State<loginPage> {
                         //           );
                         //         }
                       },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: 30.h, bottom: 30.h, left: 60.w, right: 60.w),
-                        child: Text(
-                          "Sign In",
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 50.sp),
+                      child: Text(
+                        "Change Password",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 50.sp,
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          indent: 30.w,
-                          color: color1,
-                          thickness: 2.r,
-                          endIndent: 40.w,
-                        ),
-                      ),
-                      Text(
-                        'Sign In using',
-                        style: TextStyle(color: color1),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: color1,
-                          thickness: 2.r,
-                          indent: 40.w,
-                          endIndent: 30.w,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: color1,
-                        child: Container(
-                            padding: EdgeInsets.all(10.r),
-                            child: Image.asset("assets/icons/google.png")),
-                      ),
-                      SizedBox(
-                        width: 60.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: color1,
-                        child: Container(
-                            padding: EdgeInsets.all(10.r),
-                            child: Image.asset("assets/icons/microsoft.png")),
-                      ),
-                      SizedBox(
-                        width: 60.w,
-                      ),
-                      CircleAvatar(
-                        backgroundColor: color1,
-                        child: Container(
-                          padding: EdgeInsets.all(10.r),
-                          child: Image.asset(
-                            "assets/icons/facebook.png",
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(50.r),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) => signupPage(),
-                          ),
-                        );
-                      },
-                      child: Text.rich(
-                        TextSpan(
-                            text: "Don't have an account?, ",
-                            style: TextStyle(color: color1),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: "Sign Up",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    color: color1),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
+import 'package:mindcare/screens/loginPage.dart';
+import 'package:mindcare/screens/privacyPolicyPage.dart';
 
 class signupPage extends StatefulWidget {
   signupPage({super.key});
@@ -233,7 +235,14 @@ class _signupPageState extends State<signupPage> {
                   Padding(
                     padding:  EdgeInsets.all(30.r),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => privacyPolicyPage(),
+                      ),
+                    );
+                      },
                       child:  Text.rich(
                         TextSpan(
                           text: "By signing up, you are agree to our ",
@@ -345,14 +354,25 @@ class _signupPageState extends State<signupPage> {
                       
                     },
                                 
-                    child:  Text.rich(TextSpan(text:"Already have an account? ",
-                    style: TextStyle(color: color1),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "Sign In",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700, color: color1),
-                            ),]),
+                    child:  InkWell(
+                      onTap: () {
+                        
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => loginPage(),
+                      ),
+                    );
+                      },
+                      child: Text.rich(TextSpan(text:"Already have an account? ",
+                      style: TextStyle(color: color1),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "Sign In",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700, color: color1),
+                              ),]),
+                      ),
                     )),
                   )
                 ],

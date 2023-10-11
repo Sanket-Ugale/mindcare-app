@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
-import 'package:mindcare/screens/screenList.dart';
+import 'package:mindcare/screens/analysisPage.dart';
+import 'package:mindcare/screens/drawerWidget.dart';
+import 'package:mindcare/screens/homeScreen.dart';
+import 'package:mindcare/screens/tasksScreen.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -12,10 +15,29 @@ class homePage extends StatefulWidget {
 
 class _homePageState extends State<homePage> {
   int _currentIndex = 0;
+
+  int _selectedItem = 0;
+  var pagaList = [homeScreenPage(), tasksPage(), analysisPage()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        // appBar: AppBar(backgroundColor: Colors.black,),
+        drawer: DrawerWidget(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        floatingActionButton: Builder(
+          builder: (BuildContext context) {
+            return FloatingActionButton(
+              splashColor: color1,
+              backgroundColor: Colors.transparent,
+              foregroundColor: color1,
+              onPressed: () {
+                Scaffold.of(context).openDrawer(); // Open the drawer
+              },
+              child: const Icon(Icons.menu_outlined), // Drawer icon
+            );
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 0, 91, 111),
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -32,49 +54,49 @@ class _homePageState extends State<homePage> {
               tileMode: TileMode.mirror,
             ),
           ),
+          child: pagaList[_selectedItem],
         ),
         bottomNavigationBar: Container(
           margin: EdgeInsets.all(40.r),
           decoration: BoxDecoration(
-              color: Colors.black87,
-              borderRadius: BorderRadius.circular(100.r),
-              boxShadow: [
-                BoxShadow(
-                  color:
-                      Color.fromARGB(221, 0, 0, 0).withOpacity(1),
+            color: Colors.black87,
+            borderRadius: BorderRadius.circular(100.r),
+            boxShadow: [
+              BoxShadow(
+                  color: const Color.fromARGB(221, 0, 0, 0).withOpacity(1),
                   offset: const Offset(1, 0),
                   blurRadius: 5,
                   spreadRadius: 1.5,
-                  blurStyle: BlurStyle.outer
-                )
-              ],
-              ),
+                  blurStyle: BlurStyle.outer)
+            ],
+          ),
           child: BottomNavigationBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
             unselectedItemColor: Colors.white60,
             enableFeedback: false,
             selectedItemColor: color1,
-            currentIndex: _currentIndex,
-            onTap: (int index) {
-              setState(() {
-                _currentIndex = index; // Change the current page index
-              });
-            },
+            currentIndex: _selectedItem,
+            onTap: (value) => setState(
+              () {
+                setState(() {
+                  _selectedItem = value;
+                });
+              },
+            ),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Icon(Icons.home_outlined),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
+                icon: Icon(Icons.task_outlined),
+                label: "Task's",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
+                icon: Icon(Icons.analytics_outlined),
+                label: 'Analysis',
               ),
-              
             ],
           ),
         ),
