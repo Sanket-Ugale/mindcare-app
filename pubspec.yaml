@@ -40,6 +40,11 @@ dependencies:
   device_info_plus: ^9.0.3
   permission_handler: ^11.0.1
   carousel_slider: ^4.2.1
+  fluttertoast: ^8.2.2
+  flutterfire_cli: ^0.3.0-dev.18
+  firebase_core: ^2.21.0
+  get: ^4.6.6
+  page_transition: ^2.1.0
 
 dev_dependencies:
   flutter_test:

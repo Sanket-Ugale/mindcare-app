@@ -12,6 +12,7 @@ import 'package:mindcare/screens/settings.dart';
 import 'package:mindcare/screens/signUpPage.dart';
 import 'package:mindcare/screens/splashScreen.dart';
 import 'package:mindcare/screens/verifyOTPpage.dart';
+import 'package:page_transition/page_transition.dart';
 
 class screenList extends StatelessWidget {
   const screenList({super.key});
@@ -20,30 +21,30 @@ class screenList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-  //       floatingActionButton: FloatingActionButton(onPressed:() async {
-  //         // Request SMS permission
-  // var smsPermission = await Permission.sms.request();
+        //       floatingActionButton: FloatingActionButton(onPressed:() async {
+        //         // Request SMS permission
+        // var smsPermission = await Permission.sms.request();
 
-  // // Request storage permission
-  // var storagePermission = await Permission.storage.request();
-  // var videos = await Permission.videos.request();
-  // var photos = await Permission.photos.request();
-  // var camera = await Permission.camera.request();
-  // var light12 = await Permission.camera.request();
+        // // Request storage permission
+        // var storagePermission = await Permission.storage.request();
+        // var videos = await Permission.videos.request();
+        // var photos = await Permission.photos.request();
+        // var camera = await Permission.camera.request();
+        // var light12 = await Permission.camera.request();
 
-  // // Check if both permissions are granted
-  // if (smsPermission.isGranted&& storagePermission.isGranted && videos.isGranted && photos.isGranted && camera.isGranted && light12.isGranted) {
+        // // Check if both permissions are granted
+        // if (smsPermission.isGranted&& storagePermission.isGranted && videos.isGranted && photos.isGranted && camera.isGranted && light12.isGranted) {
 
-  //   print("+++++++++++++++++++++++ done babes ++++++++++++++++++++++");
-  //   // Permissions granted, you can perform your actions here
-  //   // For example, you can read SMS or access storage.
-  //   // Remember to handle the errors if permissions are denied.
-  // } else {
-  //   print("+++++++++++++++++++++++ Permissions denied babes ++++++++++++++++++++++");
-  //   // Permissions denied
-  //   // You can show a message to the user or take appropriate action
-  // }
-  //       },),
+        //   print("+++++++++++++++++++++++ done babes ++++++++++++++++++++++");
+        //   // Permissions granted, you can perform your actions here
+        //   // For example, you can read SMS or access storage.
+        //   // Remember to handle the errors if permissions are denied.
+        // } else {
+        //   print("+++++++++++++++++++++++ Permissions denied babes ++++++++++++++++++++++");
+        //   // Permissions denied
+        //   // You can show a message to the user or take appropriate action
+        // }
+        //       },),
         appBar: AppBar(
           leading: const Icon(Icons.ac_unit_outlined),
           title: const Text(
@@ -73,7 +74,7 @@ class screenList extends StatelessWidget {
                     ]),
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
-                  trailing: Icon(
+                  trailing: const Icon(
                     Icons.construction,
                     color: Colors.redAccent,
                   ),
@@ -85,8 +86,10 @@ class screenList extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const homePage(),
+                      PageTransition(
+                        duration: const Duration(milliseconds: 400),
+                        type: PageTransitionType.fade,
+                        child: const homePage(),
                       ),
                     );
                   },
@@ -119,9 +122,14 @@ class screenList extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => loginPage(),
+                      PageTransition(
+                        duration: const Duration(milliseconds: 400),
+                        type: PageTransitionType.fade,
+                        child: loginPage(),
                       ),
+                      // MaterialPageRoute<void>(
+                      //   builder: (BuildContext context) => loginPage(),
+                      // ),
                     );
                   },
                   minVerticalPadding: 6,
@@ -153,8 +161,10 @@ class screenList extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => signupPage(),
+                      PageTransition(
+                        duration: const Duration(milliseconds: 400),
+                        type: PageTransitionType.fade,
+                        child: signupPage(),
                       ),
                     );
                   },
@@ -217,8 +227,10 @@ class screenList extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => forgotpassPage(),
+                      PageTransition(
+                        duration: const Duration(milliseconds: 400),
+                        type: PageTransitionType.fade,
+                        child: forgotpassPage(),
                       ),
                     );
                   },
@@ -361,7 +373,10 @@ class screenList extends StatelessWidget {
                     ]),
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
-                  trailing: Icon(Icons.done,color: Colors.green,),
+                  trailing: const Icon(
+                    Icons.done,
+                    color: Colors.green,
+                  ),
                   leading: const Icon(Icons.numbers),
                   title: const Text("Verify OTP"),
                   subtitle: const Text("Verify OTP page screen"),

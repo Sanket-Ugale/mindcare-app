@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "651429556190",
+    "project_id": "mindcare-d8c35",
+    "storage_bucket": "mindcare-d8c35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651429556190:android:028899bf520a21b4c8374f",
+        "android_client_info": {
+          "package_name": "com.example.mindcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoRZEjrvyqGtVgb8cbkqo1-8Dj1T2j_yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
