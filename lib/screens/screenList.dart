@@ -185,6 +185,10 @@ class screenList extends StatelessWidget {
                     ]),
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
+                  trailing: const Icon(
+                    Icons.done,
+                    color: Colors.green,
+                  ),
                   leading: const Icon(Icons.person),
                   title: const Text("Profile"),
                   subtitle: const Text("Profile page screen"),
@@ -194,7 +198,7 @@ class screenList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const profilePage(),
+                        builder: (BuildContext context) => profilePage(),
                       ),
                     );
                   },
@@ -408,6 +412,10 @@ class screenList extends StatelessWidget {
                     ]),
                 margin: const EdgeInsets.all(8),
                 child: ListTile(
+                  trailing: const Icon(
+                    Icons.done,
+                    color: Colors.green,
+                  ),
                   // trailing: Icon(Icons.construction,color: Colors.redAccent,),
                   leading: const Icon(Icons.info),
                   title: const Text("Privacy Policy"),
@@ -420,7 +428,7 @@ class screenList extends StatelessWidget {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const privacyPolicyPage(),
+                            privacyPolicyPage(),
                       ),
                     );
                   },

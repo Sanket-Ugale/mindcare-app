@@ -23,21 +23,21 @@ class _homePageState extends State<homePage> {
     return SafeArea(
       child: Scaffold(
         // appBar: AppBar(backgroundColor: Colors.black,),
-        drawer: DrawerWidget(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        floatingActionButton: Builder(
-          builder: (BuildContext context) {
-            return FloatingActionButton(
-              splashColor: color1,
-              backgroundColor: Colors.transparent,
-              foregroundColor: color1,
-              onPressed: () {
-                Scaffold.of(context).openDrawer(); // Open the drawer
-              },
-              child: const Icon(Icons.menu_outlined), // Drawer icon
-            );
-          },
-        ),
+        // drawer: DrawerWidget(),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        // floatingActionButton: Builder(
+        //   builder: (BuildContext context) {
+        //     return FloatingActionButton(
+        //       splashColor: color1,
+        //       backgroundColor: Colors.transparent,
+        //       foregroundColor: color1,
+        //       onPressed: () {
+        //         Scaffold.of(context).openDrawer(); // Open the drawer
+        //       },
+        //       child: const Icon(Icons.menu_outlined), // Drawer icon
+        //     );
+        //   },
+        // ),
         backgroundColor: const Color.fromARGB(255, 0, 91, 111),
         body: Container(
           height: MediaQuery.of(context).size.height,

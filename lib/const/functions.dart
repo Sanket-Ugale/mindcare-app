@@ -2,7 +2,7 @@ String getGreeting() {
   var now = DateTime.now();
   var hour = now.hour;
 
-  if (hour >= 0 && hour < 12) {
+  if (hour >= 6 && hour < 12) {
     return 'Good morning,';
   } else if (hour >= 12 && hour < 17) {
     return 'Good afternoon,';

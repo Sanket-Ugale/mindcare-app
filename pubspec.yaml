@@ -45,6 +45,7 @@ dependencies:
   firebase_core: ^2.21.0
   get: ^4.6.6
   page_transition: ^2.1.0
+  circular_seek_bar: ^1.1.1
 
 dev_dependencies:
   flutter_test:
