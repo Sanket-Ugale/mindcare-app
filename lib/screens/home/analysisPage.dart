@@ -1,21 +1,67 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 
 class analysisPage extends StatelessWidget {
-  const analysisPage({super.key});
+  const analysisPage({Key? key}) : super(key: key);
+
+  Future<Map<String, dynamic>> fetchData() async {
+    final response = await http.post(Uri.parse('https://mindcare-app.onrender.com/chatAnalysis/'));
+    if (response.statusCode == 200) {
+      print(response.body);
+      return jsonDecode(response.body);
+    } else {
+      print('Failed to load data. Status code: ${response.statusCode}. Body: ${response.body}');
+      throw Exception('Failed to load data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(90.r),
-      child:  Center(
-          child: Image.asset("assets/icons/empty3.png",fit: BoxFit.cover,height: 600.h,width: 600.w,) ,
-          // Text(
-          //   "Analysis Not available",
-          //   style: TextStyle(color: Colors.amberAccent, fontSize: 80.sp,),
-          //   textAlign: TextAlign.left,
-          // ),
-        ),
+    return FutureBuilder<Map<String, dynamic>>(
+      future: fetchData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator(color: Colors.white,));
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return Padding(
+            padding: EdgeInsets.all(90.r),
+            child: Column(
+              children: [
+                Text(
+                  "Chat Analysis",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 60.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  padding: EdgeInsets.all(20.r),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30.r),
+                  ),
+                  child: Column(
+                    children: snapshot.data!.entries.map((entry) {
+                      return Text('${entry.key}: ${entry.value}');
+                    }).toList(),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }

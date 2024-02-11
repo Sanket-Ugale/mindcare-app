@@ -7,6 +7,8 @@ import 'package:mindcare/screens/home/home.dart';
 import 'package:mindcare/widgets/quizRadioButton.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:confetti/confetti.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 class quizQuestionPagea extends StatefulWidget {
   quizQuestionPagea({super.key});
 
@@ -16,26 +18,63 @@ class quizQuestionPagea extends StatefulWidget {
 }
 
 class _quizQuestionPageaState extends State<quizQuestionPagea> {
+  Map<String, int> quizResults = {}; // Store the results of all questions
+
+  Future<void> updateQuizResult(String id, int result) async {
+    final response = await http.patch(
+      Uri.parse('https://mindcare-app.onrender.com/api/quiz/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, int>{
+        'pk': int.parse(id),
+        'result': result,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Quiz result updated successfully.');
+    } else {
+      throw Exception('Failed to update quiz result.');
+    }
+  }
+
+  Future<List<dynamic>> fetchQuizQuestions() async {
+    final response = await http.get(Uri.parse('https://mindcare-app.onrender.com/api/quiz/'));
+
+    if (response.statusCode == 200) {
+      // return jsonDecode(response.body);
+      
+      List<dynamic> data = jsonDecode(response.body);
+      return data.take(10).toList();
+    } else {
+      throw Exception('Failed to load quiz questions');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-              quizRadioButton(questionsNum:1, questions:"What color is of your flutter?"),
-              
-              quizRadioButton(questionsNum:2, questions:"What color is of your flutter?"),
-    
-              quizRadioButton(questionsNum:3, questions:"What color is of your flutter?"),
-    
-              quizRadioButton(questionsNum:4, questions:"What color is of your flutter?"),
-    
-              quizRadioButton(questionsNum:5, questions:"What color is of your flutter?"),
-    
-              quizRadioButton(questionsNum:6, questions:"What color is of your flutter?"),
-    
-              quizRadioButton(questionsNum:7, questions:"What color is of your flutter?"),
-
-              AnimatedButton(
-              height: 70,
+    return FutureBuilder<List<dynamic>>(
+      future: fetchQuizQuestions(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator(color: Colors.white,));
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          return Column(
+            children:[ ...snapshot.data!.map((question) {
+              return quizRadioButton(
+                questionsNum: question['id'], 
+                questions: question['question'], 
+                result: question['result'],
+                onResultChange: (result) {
+                  quizResults[question['id']] = result; // Store the result when it changes
+                }
+              );
+            }).toList(),
+            AnimatedButton(
+              height: 60,
               width: 200,
               text: 'Submit',
               isReverse: true,
@@ -44,24 +83,29 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
               // textStyle: submitTextStyle,
               backgroundColor: lightTextColor3,
               borderColor: Colors.white,
-              borderRadius: 50,
-              borderWidth: 2, onPress: () { 
+              borderRadius: 40,
+              borderWidth: 2, onPress: () async { 
+                for (var entry in quizResults.entries) {
+                  await updateQuizResult(entry.key, entry.value);
+                }
                 Navigator.push(
-                      context,
-                      PageTransition(
-                        duration: const Duration(milliseconds: 500),
-                        type: PageTransitionType.fade,
-                        child: quizSubmitPage(),
-                      ),
-                    );
+                  context,
+                  PageTransition(
+                    duration: const Duration(milliseconds: 500),
+                    type: PageTransitionType.fade,
+                    child:  quizSubmitPage(),
+                  ),
+                );
                },
             ),
             SizedBox(height: 20,)
-            ],
+            ]
+          );
+        }
+      },
     );
   }
 }
-
 class quizSubmitPage extends StatefulWidget {
   quizSubmitPage({super.key});
 
@@ -73,7 +117,7 @@ class quizSubmitPage extends StatefulWidget {
 }
 
 class _quizSubmitPageState extends State<quizSubmitPage> {
-    final confettiController = ConfettiController(duration: Duration(seconds: 3));
+    final confettiController = ConfettiController(duration: const Duration(seconds: 3));
     void initState() {  
       confettiController.play();
       super.initState();
@@ -119,11 +163,11 @@ class _quizSubmitPageState extends State<quizSubmitPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                 
-                    Text("Your Score is 5/7", style: TextStyle(
+                    const Text("Your Score is 5/7", style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     AnimatedButton(
                         height: 70,
                         width: 200,
@@ -141,7 +185,7 @@ class _quizSubmitPageState extends State<quizSubmitPage> {
                                 PageTransition(
                                   duration: const Duration(milliseconds: 500),
                                   type: PageTransitionType.fade,
-                                  child: homePage(),
+                                  child: const homePage(),
                                   
                                 ),
                               );
