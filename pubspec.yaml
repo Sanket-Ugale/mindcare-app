@@ -46,6 +46,13 @@ dependencies:
   get: ^4.6.6
   page_transition: ^2.1.0
   circular_seek_bar: ^1.1.1
+  flutter_animated_button: ^2.0.3
+  confetti: ^0.7.0
+  emoji_rating_bar: ^0.0.2
+  http: ^0.13.6
+  any_animated_button: ^0.0.4
+  intl: ^0.18.1
+  timezone: ^0.9.2
 
 dev_dependencies:
   flutter_test:

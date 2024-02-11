@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mindcare/screens/appointmentPage.dart';
-import 'package:mindcare/screens/changePasswordPage.dart';
-import 'package:mindcare/screens/chatPage.dart';
-import 'package:mindcare/screens/forgotPass.dart';
-import 'package:mindcare/screens/home.dart';
-import 'package:mindcare/screens/loginPage.dart';
-import 'package:mindcare/screens/privacyPolicyPage.dart';
-import 'package:mindcare/screens/profilePage.dart';
-import 'package:mindcare/screens/quizPage.dart';
-import 'package:mindcare/screens/settings.dart';
-import 'package:mindcare/screens/signUpPage.dart';
-import 'package:mindcare/screens/splashScreen.dart';
-import 'package:mindcare/screens/verifyOTPpage.dart';
+import 'package:mindcare/screens/appointment/appointmentPage.dart';
+import 'package:mindcare/screens/authentication/changePasswordPage.dart';
+import 'package:mindcare/screens/chat/chatPage.dart';
+import 'package:mindcare/screens/authentication/forgotPass.dart';
+import 'package:mindcare/screens/home/home.dart';
+import 'package:mindcare/screens/authentication/loginPage.dart';
+import 'package:mindcare/screens/home/privacyPolicyPage.dart';
+import 'package:mindcare/screens/home/profilePage.dart';
+import 'package:mindcare/screens/quiz/quizPage.dart';
+import 'package:mindcare/screens/home/settings.dart';
+import 'package:mindcare/screens/authentication/signUpPage.dart';
+import 'package:mindcare/screens/splash/splashScreen.dart';
+import 'package:mindcare/screens/authentication/verifyOTPpage.dart';
 import 'package:page_transition/page_transition.dart';
 
 class screenList extends StatelessWidget {
@@ -326,7 +326,7 @@ class screenList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const chatPage(),
+                        builder: (BuildContext context) => chatPage(),
                       ),
                     );
                   },
@@ -356,7 +356,7 @@ class screenList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const quizPage(),
+                        builder: (BuildContext context) => quizPage(start: false,),
                       ),
                     );
                   },

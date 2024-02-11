@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
-import 'package:mindcare/screens/loginPage.dart';
-import 'package:mindcare/screens/privacyPolicyPage.dart';
+import 'package:mindcare/screens/authentication/loginPage.dart';
+import 'package:mindcare/screens/home/privacyPolicyPage.dart';
 
 class signupPage extends StatefulWidget {
   signupPage({super.key});

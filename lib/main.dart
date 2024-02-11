@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mindcare/screens/screenList.dart';
+import 'package:mindcare/screens/home/screenList.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() {

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
-import 'package:mindcare/screens/analysisPage.dart';
-import 'package:mindcare/screens/drawerWidget.dart';
-import 'package:mindcare/screens/homeScreen.dart';
-import 'package:mindcare/screens/tasksScreen.dart';
+import 'package:mindcare/screens/home/analysisPage.dart';
+import 'package:mindcare/screens/home/homeScreen.dart';
+import 'package:mindcare/screens/home/tasksScreen.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
