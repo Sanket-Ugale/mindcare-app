@@ -7,12 +7,14 @@ class analysisPage extends StatelessWidget {
   const analysisPage({Key? key}) : super(key: key);
 
   Future<Map<String, dynamic>> fetchData() async {
-    final response = await http.post(Uri.parse('https://mindcare-app.onrender.com/chatAnalysis/'));
+    final response = await http
+        .post(Uri.parse('https://mindcare-app.onrender.com/chatAnalysis/'));
     if (response.statusCode == 200) {
       print(response.body);
       return jsonDecode(response.body);
     } else {
-      print('Failed to load data. Status code: ${response.statusCode}. Body: ${response.body}');
+      print(
+          'Failed to load data. Status code: ${response.statusCode}. Body: ${response.body}');
       throw Exception('Failed to load data');
     }
   }
@@ -23,7 +25,10 @@ class analysisPage extends StatelessWidget {
       future: fetchData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator(color: Colors.white,));
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Colors.white,
+          ));
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
@@ -43,14 +48,27 @@ class analysisPage extends StatelessWidget {
                   height: 20.h,
                 ),
                 Container(
-                  padding: EdgeInsets.all(20.r),
+                  padding: EdgeInsets.all(70.r),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30.r),
                   ),
                   child: Column(
                     children: snapshot.data!.entries.map((entry) {
-                      return Text('${entry.key}: ${entry.value}');
+                      double value = entry.value;
+                      if (value.isInfinite || value.isNaN) {
+                        value = 0; // Replace Infinity or NaN with 0
+                      }
+                      // Normalize the value to be between 0 and 1
+                      value = value.clamp(0, 1).toDouble();
+                      return Column(
+                        children: [
+
+                          Text('${entry.key}: ${entry.value.toStringAsFixed(2)}'),
+                          LinearProgressIndicator(minHeight: 7.0, value: value, borderRadius: BorderRadius.circular(100),),
+                          const SizedBox(height: 10,)
+                        ],
+                      );
                     }).toList(),
                   ),
                 ),
