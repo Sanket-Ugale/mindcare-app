@@ -54,6 +54,18 @@ dependencies:
   intl: ^0.18.1
   timezone: ^0.9.2
   fl_chart: ^0.66.2
+  # heka_health: ^0.2.7
+  # sensors_plus: ^4.0.2
+  # snake: ^0.1.0
+  # sqflite: ^2.3.2
+  # pedometer: ^4.0.1
+  # google_fonts: ^4.0.4
+  # health_kit: ^0.0.6
+  health: ^9.0.1
+  # flutter_health_connect: ^1.2.3
+  # pedometer_plus: ^1.0.1
+  # health: ^9.0.1
+  # health: ^9.0.1
 
 dev_dependencies:
   flutter_test:
