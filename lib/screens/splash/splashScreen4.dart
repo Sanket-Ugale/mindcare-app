@@ -4,8 +4,8 @@ import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/screens/splash/splashScreen2.dart';
 import 'package:page_transition/page_transition.dart';
 
-class splashScreenPage extends StatelessWidget {
-  const splashScreenPage({super.key});
+class splashScreenPage4 extends StatelessWidget {
+  const splashScreenPage4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,47 +70,30 @@ class splashScreenPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Your Mental Wellness Companion",
+                "Expert Guidance at Your Fingertips",
                 style: TextStyle(color: color1, fontSize: 80.sp),
               ),
             ),
-            Padding(padding: const EdgeInsets.all(8.0), child: Text("Empowering You for a Healthier Mind", style: TextStyle(color: lightTextColor2, fontSize: 55.sp),)),
+            Padding(padding: const EdgeInsets.all(8.0), child: Text("Connect with a Mental Health Specialist through secure video sessions", style: TextStyle(color: lightTextColor2, fontSize: 55.sp),)),
             SizedBox(
               height: 100.h,
             ),
-            Image(image: const AssetImage('assets/images/illustration_3.jpg', ),height: 900.h, width: MediaQuery.of(context).size.width,fit: BoxFit.cover,),
+            Image(image: const AssetImage('assets/images/illustration_8_1.png', ),height: 900.h, width: MediaQuery.of(context).size.width,fit: BoxFit.cover,),
             SizedBox(
-              height: 100.h,
+              height: 190.h,
             ),
-            Text(
-              "Let's get started",
-              style: TextStyle(color: color1, fontSize: 60.sp),
-            ),
-            SizedBox(
-              height: 90.h,
-            ),
+            // Text(
+            //   "Let's get started",
+            //   style: TextStyle(color: color1, fontSize: 60.sp),
+            // ),
+            // SizedBox(
+            //   height: 100.h,
+            // ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // ElevatedButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, '/login');
-                //   },
-                //   child: Text(
-                //     "< Previous",
-                //     style: TextStyle(color: color1, fontSize: 60.sp),
-                //   ),
-                //   style: ElevatedButton.styleFrom(
-                //     primary: color2,
-                //     // padding: EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
-                //     shape: RoundedRectangleBorder(
-                //       borderRadius: BorderRadius.circular(30.r),
-                //     ),
-                //   ),
-                // ),
-                Padding(
-                  padding: const EdgeInsets.only(right:16.0),
-                  child: ElevatedButton(
+                ElevatedButton(
                     
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -118,9 +101,11 @@ class splashScreenPage extends StatelessWidget {
                       PageTransition(
                         duration: const Duration(milliseconds: 400),
                         type: PageTransitionType.fade,
-                        child: const splashScreenPage2(),));},
+                        child: const splashScreenPage2(),
+                      ),);
+                    },
                     child: Text(
-                      "Next >",
+                      "< Previous",
                       style: TextStyle(color: color1, fontSize: 60.sp),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -130,6 +115,29 @@ class splashScreenPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.r),
                       ),
+                    ),
+                  ),
+                ElevatedButton(
+                  
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                        duration: const Duration(milliseconds: 400),
+                        type: PageTransitionType.fade,
+                        child: splashScreenPage4(),
+                      ),);
+                  },
+                  child: Text(
+                    "Next >",
+                    style: TextStyle(color: color1, fontSize: 60.sp),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: lightTextColor3,
+                    
+                    padding: EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.r),
                     ),
                   ),
                 ),

@@ -89,7 +89,7 @@ class _quizStartPageState extends State<quizStartPage> {
               borderColor: Colors.white,
               borderRadius: 50,
               borderWidth: 2, onPress: () { 
-                Navigator.push(
+                Navigator.pushReplacement(
                       context,
                       PageTransition(
                         duration: const Duration(milliseconds: 500),

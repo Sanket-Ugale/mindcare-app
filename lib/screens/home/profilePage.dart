@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/screens/home/settings.dart';
@@ -184,7 +183,7 @@ class _profilePageState extends State<profilePage> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             PageTransition(
                               duration: const Duration(milliseconds: 200),

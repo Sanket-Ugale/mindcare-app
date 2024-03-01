@@ -316,7 +316,7 @@ class _loginPageState extends State<loginPage> {
                         ),
                         InkWell(
                             onTap: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute<void>(
                                   builder: (BuildContext context) =>
@@ -439,7 +439,7 @@ class _loginPageState extends State<loginPage> {
                       margin: EdgeInsets.all(50.r),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute<void>(
                               builder: (BuildContext context) => signupPage(),

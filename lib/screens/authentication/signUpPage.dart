@@ -236,7 +236,7 @@ class _signupPageState extends State<signupPage> {
                     padding:  EdgeInsets.all(30.r),
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) => privacyPolicyPage(),
@@ -357,7 +357,7 @@ class _signupPageState extends State<signupPage> {
                     child:  InkWell(
                       onTap: () {
                         
-                        Navigator.push(
+                        Navigator.pushReplacement(
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) => loginPage(),
