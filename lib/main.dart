@@ -70,7 +70,7 @@ void onUserLeaveHint() {
     return ScreenUtilInit(
       designSize: const Size(1080, 2400),
       child: MaterialApp(
-        title: 'Mind Care',
+        title: 'MindCare',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: const AppBarTheme(

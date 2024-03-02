@@ -3,6 +3,8 @@ import 'package:mindcare/screens/appointment/appointmentPage.dart';
 import 'package:mindcare/screens/authentication/changePasswordPage.dart';
 import 'package:mindcare/screens/chat/chatPage.dart';
 import 'package:mindcare/screens/authentication/forgotPass.dart';
+import 'package:mindcare/screens/error/maintainance.dart';
+import 'package:mindcare/screens/error/noInternetError.dart';
 import 'package:mindcare/screens/home/home.dart';
 import 'package:mindcare/screens/authentication/loginPage.dart';
 import 'package:mindcare/screens/home/privacyPolicyPage.dart';
@@ -494,6 +496,72 @@ class screenList extends StatelessWidget {
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
                             const changePasswordPage(),
+                      ),
+                    );
+                  },
+                  minVerticalPadding: 6,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0x444444).withOpacity(1),
+                        offset: const Offset(1, 0),
+                        blurRadius: 10,
+                        spreadRadius: -7,
+                      )
+                    ]),
+                margin: const EdgeInsets.all(8),
+                child: ListTile(
+                  // trailing: Icon(Icons.construction,color: Colors.redAccent,),
+                  leading: const Icon(Icons.construction),
+                  title: const Text("Maintainance"),
+                  subtitle: const Text(
+                      "App Maintainance Page (Under Construction)"),
+                  style: ListTileStyle.list,
+                  // focusColor: Colors.black38,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const maintainancePage(),
+                      ),
+                    );
+                  },
+                  minVerticalPadding: 6,
+                ),
+              ),
+               Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0x444444).withOpacity(1),
+                        offset: const Offset(1, 0),
+                        blurRadius: 10,
+                        spreadRadius: -7,
+                      )
+                    ]),
+                margin: const EdgeInsets.all(8),
+                child: ListTile(
+                  // trailing: Icon(Icons.construction,color: Colors.redAccent,),
+                  leading: const Icon(Icons.wifi_off),
+                  title: const Text("No Internet"),
+                  subtitle: const Text(
+                      "Internet Unavailable Page"),
+                  style: ListTileStyle.list,
+                  // focusColor: Colors.black38,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const noInternetPage(),
                       ),
                     );
                   },
