@@ -69,7 +69,7 @@ class _homeScreenPageState extends State<homeScreenPage> {
                         PageTransition(
                           duration: const Duration(milliseconds: 300),
                           type: PageTransitionType.leftToRight,
-                          child: ConnectivityWidgetWrapper(child: profilePage()),
+                          child:  profilePage(),
                         ),
                       );
                       },
