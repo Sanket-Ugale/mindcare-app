@@ -8,10 +8,11 @@ import 'package:mindcare/screens/error/noInternetError.dart';
 import 'package:mindcare/screens/home/home.dart';
 import 'package:mindcare/screens/authentication/loginPage.dart';
 import 'package:mindcare/screens/home/privacyPolicyPage.dart';
-import 'package:mindcare/screens/home/profilePage.dart';
+import 'package:mindcare/screens/profile/profilePage.dart';
 import 'package:mindcare/screens/quiz/quizPage.dart';
 import 'package:mindcare/screens/home/settings.dart';
 import 'package:mindcare/screens/authentication/signUpPage.dart';
+import 'package:mindcare/screens/reminders/reminderPage.dart';
 import 'package:mindcare/screens/splash/splashScreen.dart';
 import 'package:mindcare/screens/authentication/verifyOTPpage.dart';
 import 'package:page_transition/page_transition.dart';
@@ -68,7 +69,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -104,7 +105,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -143,7 +144,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -179,7 +180,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -213,7 +214,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -249,7 +250,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -280,7 +281,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -311,7 +312,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -341,7 +342,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -358,7 +359,7 @@ class screenList extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => quizPage(start: false,),
+                        builder: (BuildContext context) => const quizPage(start: false,),
                       ),
                     );
                   },
@@ -371,7 +372,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -406,7 +407,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -443,7 +444,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -475,7 +476,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -508,7 +509,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -541,7 +542,7 @@ class screenList extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0x444444).withOpacity(1),
+                        color: const Color(0x00444444).withOpacity(1),
                         offset: const Offset(1, 0),
                         blurRadius: 10,
                         spreadRadius: -7,
@@ -562,6 +563,72 @@ class screenList extends StatelessWidget {
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
                             const noInternetPage(),
+                      ),
+                    );
+                  },
+                  minVerticalPadding: 6,
+                ),
+              ),
+                            Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0x00444444).withOpacity(1),
+                        offset: const Offset(1, 0),
+                        blurRadius: 10,
+                        spreadRadius: -7,
+                      )
+                    ]),
+                margin: const EdgeInsets.all(8),
+                child: ListTile(
+                  // trailing: Icon(Icons.construction,color: Colors.redAccent,),
+                  leading: const Icon(Icons.construction),
+                  title: const Text("Maintainance"),
+                  subtitle: const Text(
+                      "App Maintainance Page (Under Construction)"),
+                  style: ListTileStyle.list,
+                  // focusColor: Colors.black38,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const maintainancePage(),
+                      ),
+                    );
+                  },
+                  minVerticalPadding: 6,
+                ),
+              ),
+               Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0x00444444).withOpacity(1),
+                        offset: const Offset(1, 0),
+                        blurRadius: 10,
+                        spreadRadius: -7,
+                      )
+                    ]),
+                margin: const EdgeInsets.all(8),
+                child: ListTile(
+                  // trailing: Icon(Icons.construction,color: Colors.redAccent,),
+                  leading: const Icon(Icons.notification_add),
+                  title: const Text("Reminders"),
+                  subtitle: const Text(
+                      "User Personal Reminders Page"),
+                  style: ListTileStyle.list,
+                  // focusColor: Colors.black38,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const reminderPage(),
                       ),
                     );
                   },

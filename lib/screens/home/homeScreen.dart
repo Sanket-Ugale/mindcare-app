@@ -5,10 +5,11 @@ import 'package:mindcare/const/functions.dart';
 import 'package:mindcare/screens/appointment/appointmentPage.dart';
 import 'package:mindcare/screens/chat/chatPage.dart';
 import 'package:mindcare/screens/faceSoul.dart';
-import 'package:mindcare/screens/home/profilePage.dart';
+import 'package:mindcare/screens/profile/profilePage.dart';
 import 'package:mindcare/screens/quiz/quizPage.dart';
 import 'package:mindcare/screens/scenarioPage.dart';
 import 'package:mindcare/screens/wearcare/wearCare.dart';
+import 'package:mindcare/widgets/ConnectivityWidgetWrapper.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:circular_seek_bar/circular_seek_bar.dart';
 
@@ -64,13 +65,13 @@ class _homeScreenPageState extends State<homeScreenPage> {
                     onTap:() { 
                       // Scaffold.of(context).openDrawer();
                       Navigator.push(
-                      context,
-                      PageTransition(
-                        duration: const Duration(milliseconds: 300),
-                        type: PageTransitionType.leftToRight,
-                        child: profilePage(),
-                      ),
-                    );
+                        context,
+                        PageTransition(
+                          duration: const Duration(milliseconds: 300),
+                          type: PageTransitionType.leftToRight,
+                          child: ConnectivityWidgetWrapper(child: profilePage()),
+                        ),
+                      );
                       },
                     child: Container(
                       height: 45,

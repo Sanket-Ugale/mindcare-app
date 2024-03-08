@@ -485,10 +485,8 @@
 
 
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
 import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
