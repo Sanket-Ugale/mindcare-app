@@ -13,7 +13,7 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
-  int _currentIndex = 0;
+  // int _currentIndex = 0;
 
   int _selectedItem = 0;
   var pagaList = [homeScreenPage(), tasksPage(), analysisPage()];

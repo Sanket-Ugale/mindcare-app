@@ -628,7 +628,7 @@ class screenList extends StatelessWidget {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const reminderPage(),
+                            const ReminderPage(),
                       ),
                     );
                   },

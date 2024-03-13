@@ -5,14 +5,14 @@ import 'package:mindcare/main.dart';
 import 'package:mindcare/screens/reminders/notification.dart';
 import 'package:mindcare/screens/reminders/services/noti_service.dart';
 
-class reminderPage extends StatefulWidget {
-  const reminderPage({super.key});
+class ReminderPage extends StatefulWidget {
+  const ReminderPage({super.key});
 
   @override
-  State<reminderPage> createState() => _reminderPageState();
+  State<ReminderPage> createState() => _ReminderPageState();
 }
 
-class _reminderPageState extends State<reminderPage> {
+class _ReminderPageState extends State<ReminderPage> {
   List remindersList = [];
   bool isLoading = true;
 

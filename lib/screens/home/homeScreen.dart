@@ -7,6 +7,7 @@ import 'package:mindcare/screens/chat/chatPage.dart';
 import 'package:mindcare/screens/faceSoul.dart';
 import 'package:mindcare/screens/profile/profilePage.dart';
 import 'package:mindcare/screens/quiz/quizPage.dart';
+import 'package:mindcare/screens/reminders/reminderPage.dart';
 import 'package:mindcare/screens/scenarioPage.dart';
 import 'package:mindcare/screens/wearcare/wearCare.dart';
 import 'package:mindcare/widgets/ConnectivityWidgetWrapper.dart';
@@ -254,78 +255,6 @@ class _homeScreenPageState extends State<homeScreenPage> {
                       PageTransition(
                         duration: const Duration(milliseconds: 100),
                         type: PageTransitionType.fade,
-                        child:  const faceSoul(),
-                      ),
-                    );
-                      // setState(() {
-                      //   progress=90.0;
-                      // });
-                    
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(30.r),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50.r),
-                        color: const Color.fromARGB(143, 197, 197, 197),
-                      ),
-                      margin: EdgeInsets.all(5.r),
-                      height: 500.h,
-                      width: 500.h,
-                      child: Stack(
-                        children: [
-                          Container(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "FaceSoul",
-                              style: TextStyle(
-                                  color: color1,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 60.sp),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Emotion Insight",
-                              style: TextStyle(
-                                color: Colors.white60,
-                                fontWeight: FontWeight.w100,
-                                fontSize: 40.sp,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: 250.h, left: 250.w),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50.r),
-                                  bottomLeft: Radius.circular(100.r),
-                                  topRight: Radius.circular(100.r)),
-                              color: const Color.fromARGB(143, 26, 71, 103),
-                            ),
-                            alignment: Alignment.bottomRight,
-                            child: Image.asset(
-                              "assets/images/icons8-face-recognition-64.png",
-                              height: 150.h,
-                              width: 150.w,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  
-                ],
-              ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                      context,
-                      PageTransition(
-                        duration: const Duration(milliseconds: 100),
-                        type: PageTransitionType.fade,
                         child:  chatPage(),
                       ),
                     );
@@ -385,6 +314,12 @@ class _homeScreenPageState extends State<homeScreenPage> {
                         ),
                       ),
                   ),
+                  
+                ],
+              ),
+              Row(
+                children: [
+                  
                     GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -448,11 +383,7 @@ class _homeScreenPageState extends State<homeScreenPage> {
                         ),
                       ),
                     ),
-                ],
-              ),
-               Row(
-                children: [
-                  GestureDetector(
+                    GestureDetector(
                     onTap: () {
                       Navigator.push(
                       context,
@@ -518,6 +449,79 @@ class _homeScreenPageState extends State<homeScreenPage> {
                         ),
                       ),
                   ),
+                ],
+              ),
+               Row(
+                children: [
+
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                      context,
+                      PageTransition(
+                        duration: const Duration(milliseconds: 100),
+                        type: PageTransitionType.fade,
+                        child:  const ReminderPage(),
+                      ),
+                    );
+                      // setState(() {
+                      //   progress=90.0;
+                      // });
+                    
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(30.r),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.r),
+                        color: const Color.fromARGB(143, 197, 197, 197),
+                      ),
+                      margin: EdgeInsets.all(5.r),
+                      height: 500.h,
+                      width: 500.h,
+                      child: Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            child: Text(
+                              "Remiders",
+                              style: TextStyle(
+                                  color: color1,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 60.sp),
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Emotion Insight",
+                              style: TextStyle(
+                                color: Colors.white60,
+                                fontWeight: FontWeight.w100,
+                                fontSize: 40.sp,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(top: 250.h, left: 250.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(50.r),
+                                  bottomLeft: Radius.circular(100.r),
+                                  topRight: Radius.circular(100.r)),
+                              color: const Color.fromARGB(143, 26, 71, 103),
+                            ),
+                            alignment: Alignment.bottomRight,
+                            child: Image.asset(
+                              "assets/images/icons8-face-recognition-64.png",
+                              height: 150.h,
+                              width: 150.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
                      GestureDetector(
                     onTap: () {
                       Navigator.push(
