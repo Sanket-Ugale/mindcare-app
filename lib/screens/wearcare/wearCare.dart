@@ -487,7 +487,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:health/health.dart';
+import 'package:mindcare/const/colors.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(wearCare());
@@ -510,6 +512,7 @@ enum AppState {
   DATA_NOT_DELETED,
   STEPS_READY,
 }
+
 
 class _wearCareState extends State<wearCare> {
   List<HealthDataPoint> _healthDataList = [];
@@ -766,7 +769,7 @@ class _wearCareState extends State<wearCare> {
     children: [
       Container(
         padding: EdgeInsets.all(10),
-        color: Colors.green,
+        // color: Colors.green,
         child: Text(
           'Steps Aggregated by Date',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -791,14 +794,14 @@ class _wearCareState extends State<wearCare> {
       // Add more containers for other types of health data as needed
 
       // Example for displaying weight data
-      Container(
-        padding: EdgeInsets.all(10),
-        color: Colors.blue,
-        child: Text(
-          'Weight Data',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-      ),
+      // Container(
+      //   padding: EdgeInsets.all(10),
+      //   color: Colors.blue,
+      //   // child: Text(
+      //   //   'Weight Data',
+      //   //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      //   // ),
+      // ),
       // Code to display weight data
       // ...
 
@@ -887,65 +890,100 @@ class _wearCareState extends State<wearCare> {
     else
       return _contentNotFetched();
   }
+ 
+ Future<void> AuthFetch() async {
+  super.initState();
+  // Call your function here
+ await authorize();
+                        await fetchData();
+}
 
+@override
+void initState() {
+  super.initState();
+  // Call your function here
+  AuthFetch();
+  
+                       
+                      
+}
+// void AuthFetch(){
+   
+//   fetchData();
+// }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('wearCare'),
+        // floatingActionButton: FloatingActionButton(onPressed: fetchData, child: Icon(Icons.refresh),backgroundColor: color2,),
+        appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.grey[900],
+            statusBarIconBrightness: Brightness.light,
+          ),
         ),
+      ),
         body: Container(
           child: Column(
             children: [
               Wrap(
                 spacing: 10,
                 children: [
-                  TextButton(
-                      onPressed: authorize,
-                      child:
-                          Text("Auth", style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
-                  TextButton(
-                      onPressed: fetchData,
-                      child: Text("Fetch Data",
-                          style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
-                  TextButton(
-                      onPressed: addData,
-                      child: Text("Add Data",
-                          style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
-                  TextButton(
-                      onPressed: deleteData,
-                      child: Text("Delete Data",
-                          style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
-                  TextButton(
-                      onPressed: fetchStepData,
-                      child: Text("Fetch Step Data",
-                          style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
-                  TextButton(
-                      onPressed: revokeAccess,
-                      child: Text("Revoke Access",
-                          style: TextStyle(color: Colors.white)),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue))),
+                  // ListTile(
+                  //   title: Text("Press 'Auth' to get permissions to access health data."),
+                  //   // onTap: AuthFetch,
+                  // ),
+
+                  
+                  // TextButton(
+                  //     onPressed: authorize,
+                  //     child:
+                  //         Text("Auth", style: TextStyle(color: Colors.white)),
+                  //     style: ButtonStyle(
+                  //         backgroundColor:
+                  //             MaterialStatePropertyAll(Colors.blue))),
+                  // TextButton(
+                  //     onPressed: () async {
+                  //       await authorize();
+                  //       await fetchData();
+                  //     },
+                      // child: Icon(Icons.refresh, color: Colors.white),
+                      // style: ButtonStyle(
+                      //     backgroundColor:
+                      //         MaterialStatePropertyAll(Colors.blue))),
+                  // TextButton(
+                  //     onPressed: addData,
+                  //     child: Text("Add Data",
+                  //         style: TextStyle(color: Colors.white)),
+                  //     style: ButtonStyle(
+                  //         backgroundColor:
+                  //             MaterialStatePropertyAll(Colors.blue))),
+                  // TextButton(
+                  //     onPressed: deleteData,
+                  //     child: Text("Delete Data",
+                  //         style: TextStyle(color: Colors.white)),
+                  //     style: ButtonStyle(
+                  //         backgroundColor:
+                  //             MaterialStatePropertyAll(Colors.blue))),
+                  // TextButton(
+                  //     onPressed: fetchStepData,
+                  //     child: Text("Fetch Step Data",
+                  //         style: TextStyle(color: Colors.white)),
+                  //     style: ButtonStyle(
+                  //         backgroundColor:
+                  //             MaterialStatePropertyAll(Colors.blue))),
+                  // TextButton(
+                      // onPressed: revokeAccess,
+                      // child: Text("Revoke Access",
+                      //     style: TextStyle(color: Colors.white)),
+                      // style: ButtonStyle(
+                      //     backgroundColor:
+                      //         MaterialStatePropertyAll(Colors.blue))),
                 ],
               ),
-              Divider(thickness: 3),
+              // Divider(thickness: 3),
               Expanded(child: Center(child: _content()))
             ],
           ),

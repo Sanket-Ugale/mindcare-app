@@ -7,17 +7,15 @@ class analysisPage extends StatelessWidget {
   const analysisPage({Key? key}) : super(key: key);
 
   Future<Map<String, dynamic>> fetchData() async {
-    final response = await http
-        .post(Uri.parse('https://mindcare-app.onrender.com/chatAnalysis/'));
-    if (response.statusCode == 200) {
-      print(response.body);
-      return jsonDecode(response.body);
-    } else {
-      print(
-          'Failed to load data. Status code: ${response.statusCode}. Body: ${response.body}');
-      throw Exception('Failed to load data');
-    }
+  final response = await http.get(Uri.parse('https://mindcare-app.onrender.com/chatAnalysis/'));
+  if (response.statusCode == 200) {
+    print(response.body);
+    return jsonDecode(response.body);
+  } else {
+    print('Failed to load data. Status code: ${response.statusCode}. Body: ${response.body}');
+    throw Exception('Failed to load data');
   }
+}
 
   @override
   Widget build(BuildContext context) {

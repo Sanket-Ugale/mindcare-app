@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mindcare/localDB/sql_helper.dart';
 import 'package:mindcare/main.dart';
-import 'package:mindcare/screens/reminders/notification.dart';
-import 'package:mindcare/screens/reminders/services/noti_service.dart';
+// import 'package:mindcare/screens/reminders/notification.dart';
+// import 'package:mindcare/screens/reminders/services/noti_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/timezone.dart';
 
 class ReminderPage extends StatefulWidget {
   const ReminderPage({super.key});
@@ -48,14 +52,15 @@ class _ReminderPageState extends State<ReminderPage> {
             builder: (context) => StatefulBuilder(
               builder: (context, setState) => SingleChildScrollView(
                 child: Container(
-                  margin: const EdgeInsets.only(top:150),
+                  margin: const EdgeInsets.only(top: 150),
                   child: AlertDialog(
                     icon: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).pop(false); // Close the dialog
+                            Navigator.of(context)
+                                .pop(false); // Close the dialog
                           },
                           child: const Icon(Icons.close),
                         ),
@@ -93,13 +98,13 @@ class _ReminderPageState extends State<ReminderPage> {
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime(2050),
                               );
-                  
+
                               if (selectedDate != null) {
                                 selectedTime = await showTimePicker(
                                   context: context,
                                   initialTime: TimeOfDay.now(),
                                 );
-                  
+
                                 if (selectedTime != null) {
                                   selectedDate = DateTime(
                                     selectedDate!.year,
@@ -108,7 +113,7 @@ class _ReminderPageState extends State<ReminderPage> {
                                     selectedTime!.hour,
                                     selectedTime!.minute,
                                   );
-                  
+
                                   dateTimeController.text =
                                       DateFormat('yyyy-MM-dd HH:mm:ss.SSS')
                                           .format(selectedDate!);
@@ -116,44 +121,43 @@ class _ReminderPageState extends State<ReminderPage> {
                               }
                             },
                           ),
-                          SizedBox(height:20),
+                          SizedBox(height: 20),
                           ElevatedButton(
-                            
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(150, 50),
-                              primary: Colors.white,
-                              surfaceTintColor: Colors.black,
-                              shadowColor: Colors.black,
-                              elevation: 10,
-                            ),
-                            onPressed: () {
-                              // save reminder to local db
-                              if (selectedDate != null) {
-                                String formattedDateTime =
-                                    DateFormat('yyyy-MM-ddTHH:mm:ss.SSS')
-                                        .format(selectedDate!);
-                                SQLHelper.insertNotification(
-                                        titleController.text,
-                                        descriptionController.text,
-                                        DateTime.parse(formattedDateTime))
-                                    .then((_) {
-                                  Navigator.of(context).pop(
-                                      true); // Close the dialog with a result
-                                });
-                                Noti.showBigTextNotification(
-                                    // id: 0,
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(150, 50),
+                                primary: Colors.white,
+                                surfaceTintColor: Colors.black,
+                                shadowColor: Colors.black,
+                                elevation: 10,
+                              ),
+                              onPressed: () {
+                                // save reminder to local db
+                                if (selectedDate != null) {
+                                  String formattedDateTime =
+                                      DateFormat('yyyy-MM-ddTHH:mm:ss.SSS')
+                                          .format(selectedDate!);
+                                  SQLHelper.insertNotification(
+                                          titleController.text,
+                                          descriptionController.text,
+                                          DateTime.parse(formattedDateTime))
+                                      .then((_) {
+                                    Navigator.of(context)
+                                        .pop(true); // Close the dialog
+                                  });
+                                  Noti.showBigTextNotification(
                                     title: titleController.text,
                                     body: descriptionController.text,
-                                    fln: flutterLocalNotificationsPlugin);
-                              //   NotificationService().scheduleNotification(
-                              //       title: titleController.text,
-                              //       body: '$descriptionController.text',
-                              //       scheduledNotificationDateTime:DateTime.parse(dateTimeController.text),
-                                 
-                              // );
-                              }},
-                            child: const Text('Save', style: TextStyle(fontSize: 20, color: Colors.black),)
-                          ),
+                                    scheduledTime:
+                                        DateTime.parse(formattedDateTime),
+                                    fln: flutterLocalNotificationsPlugin,
+                                  );
+                                }
+                              },
+                              child: const Text(
+                                'Save',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.black),
+                              )),
                         ],
                       ),
                     ),
@@ -246,6 +250,52 @@ class _ReminderPageState extends State<ReminderPage> {
                   ));
             }
           }),
+    );
+  }
+}
+
+class Noti {
+  static Future initialize(
+      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
+    var android = AndroidInitializationSettings('@mipmap/launcher_icon');
+    // var ios = IOSInitializationSettings();
+    var initSettings = InitializationSettings(
+      android: android,
+      // iOS: ios
+    );
+    await flutterLocalNotificationsPlugin.initialize(initSettings);
+  }
+
+  static Future showBigTextNotification({
+    required String title,
+    required String body,
+    var payload,
+    required FlutterLocalNotificationsPlugin fln,
+    required DateTime scheduledTime,
+  }) async {
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'channel_id 69',
+      'big text channel name',
+      playSound: true,
+      enableVibration: true,
+      importance: Importance.max,
+      priority: Priority.high,
+      styleInformation: BigTextStyleInformation(body),
+      // sound: RawResourceAndroidNotificationSound('notification'),
+    );
+    var not = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+    );
+    await fln.zonedSchedule(
+      0,
+      title,
+      body,
+      TZDateTime.from(scheduledTime, tz.local),
+      not,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 }

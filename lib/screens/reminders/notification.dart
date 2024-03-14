@@ -20,7 +20,7 @@ class Noti {
       required String title,
       required String body,
       var payload,
-      required FlutterLocalNotificationsPlugin fln}) async {
+      required FlutterLocalNotificationsPlugin fln, required DateTime scheduledTime}) async {
     AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'channel_id 69',
