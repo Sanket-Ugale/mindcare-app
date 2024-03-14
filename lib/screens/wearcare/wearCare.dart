@@ -488,6 +488,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:health/health.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -745,10 +746,11 @@ class _wearCareState extends State<wearCare> {
         Container(
           padding: EdgeInsets.all(20),
           child: CircularProgressIndicator(
-            strokeWidth: 10,
+            color: color1,
+            strokeWidth: 5,
           ),
         ),
-        Text('Fetching data...')
+        Text('Fetching data...', style: TextStyle(color: Colors.white),)
       ],
     );
   }
@@ -772,17 +774,31 @@ class _wearCareState extends State<wearCare> {
         // color: Colors.green,
         child: Text(
           'Steps Aggregated by Date',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: color1),
         ),
       ),
       if (stepsByDate.isNotEmpty)
         Column(
           children: stepsByDate.entries.map((entry) {
-            return ListTile(
-              title: Text(
-                'Date: ${entry.key}',
+            return Container(
+               margin: EdgeInsets.all(50.r),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40.r),
+          color: const Color.fromARGB(6, 138, 138, 138),
+          boxShadow: [
+            BoxShadow(
+              color: color1.withOpacity(0.5),
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+              child: ListTile(
+                trailing: Icon(Icons.nordic_walking, color: color1, size: 100.r,),
+                title: Text(
+                  'Date: ${entry.key}',style: TextStyle(color: color1),
+                ),
+                subtitle: Text('Total Steps: ${entry.value}',style: TextStyle(color: color1),),
               ),
-              subtitle: Text('Total Steps: ${entry.value}'),
             );
           }).toList(),
         ),
@@ -926,6 +942,20 @@ void initState() {
         ),
       ),
         body: Container(
+          height: MediaQuery.of(context).size.height - 35,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment(0.8, 1),
+              colors: <Color>[
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 55, 67),
+                Color.fromARGB(255, 0, 91, 111),
+              ],
+              tileMode: TileMode.mirror,
+            ),
+          ),
           child: Column(
             children: [
               Wrap(

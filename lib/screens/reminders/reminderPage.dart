@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/localDB/sql_helper.dart';
 import 'package:mindcare/main.dart';
 // import 'package:mindcare/screens/reminders/notification.dart';
@@ -39,7 +41,7 @@ class _ReminderPageState extends State<ReminderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: Color.fromARGB(150, 255, 255, 255),
         onPressed: () {
           TextEditingController titleController = TextEditingController();
           TextEditingController descriptionController = TextEditingController();
@@ -174,82 +176,103 @@ class _ReminderPageState extends State<ReminderPage> {
         },
         child: const Icon(Icons.add),
       ),
-      appBar: AppBar(
-        title: const Text('Reminder'),
-        centerTitle: true,
+        appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.grey[900],
+            statusBarIconBrightness: Brightness.light,
+          ),
+        ),
       ),
-      body: ListView.builder(
-          itemCount: remindersList.length,
-          itemBuilder: (context, index) {
-            if (isLoading) {
-              return const Center(
-                  child: CircularProgressIndicator(
-                color: Colors.black,
-              ));
-            } else {
-              DateTime sendTime =
-                  DateTime.parse(remindersList[index]['sendTime']);
-              String formattedDate = DateFormat('dd-MM-yyyy').format(sendTime);
-              String formattedTime = DateFormat('HH:mm').format(sendTime);
-
-              return Container(
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white),
-                  child: ListTile(
-                    title: Text(remindersList[index]['title']),
-                    subtitle: Text(remindersList[index]['description']),
-                    trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text("Date: $formattedDate"),
-                        Text("Time: $formattedTime"),
-                      ],
-                    ),
-                    onLongPress: () {
-                      showDialog(
-                        // barrierColor: Colors.white.withOpacity(0.7),
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          backgroundColor: Colors.white,
-                          surfaceTintColor: Colors.white,
-                          title: Text('Delete Reminder'),
-                          content: Text('Do you want to delete this reminder?'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: Text('Cancel'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            TextButton(
-                              child: Text('Delete'),
-                              onPressed: () {
-                                // Delete the item from the data source
-                                SQLHelper.deleteNotification(remindersList[
-                                        index][
-                                    'id']); // Assuming SQLHelper has a deleteNotification method
-
-                                // Remove the item from the list of items and refresh the list
-                                setState(() {
-                                  // remindersList.removeAt(index);
-                                  getReminders();
-                                });
-
-                                // Close the dialog
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ));
-            }
-          }),
+      body: Container(
+          height: MediaQuery.of(context).size.height - 35,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment(0.8, 1),
+              colors: <Color>[
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 55, 67),
+                Color.fromARGB(255, 0, 91, 111),
+              ],
+              tileMode: TileMode.mirror,
+            ),
+          ),
+        child: ListView.builder(
+            itemCount: remindersList.length,
+            itemBuilder: (context, index) {
+              if (isLoading) {
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.black,
+                ));
+              } else {
+                DateTime sendTime =
+                    DateTime.parse(remindersList[index]['sendTime']);
+                String formattedDate = DateFormat('dd-MM-yyyy').format(sendTime);
+                String formattedTime = DateFormat('HH:mm').format(sendTime);
+        
+                return Container(
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromARGB(36, 255, 255, 255)),
+                    child: ListTile(
+                      title: Text(remindersList[index]['title'], style: TextStyle(color: color1),),
+                      subtitle: Text(remindersList[index]['description'], style: TextStyle(color: color1),),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Text("Date: $formattedDate", style: TextStyle(color: color1),),
+                          Text("Time: $formattedTime", style: TextStyle(color: color1),),
+                        ],
+                      ),
+                      onLongPress: () {
+                        showDialog(
+                          // barrierColor: Colors.white.withOpacity(0.7),
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            backgroundColor: Color.fromARGB(124, 255, 255, 255),
+                            surfaceTintColor: color1,
+                            title: Text('Delete Reminder'),
+                            content: Text('Do you want to delete this reminder?'),
+                            actions: <Widget>[
+                              TextButton(
+                                child: Text('Cancel'),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                              TextButton(
+                                child: Text('Delete'),
+                                onPressed: () {
+                                  // Delete the item from the data source
+                                  SQLHelper.deleteNotification(remindersList[
+                                          index][
+                                      'id']); // Assuming SQLHelper has a deleteNotification method
+        
+                                  // Remove the item from the list of items and refresh the list
+                                  setState(() {
+                                    // remindersList.removeAt(index);
+                                    getReminders();
+                                  });
+        
+                                  // Close the dialog
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ));
+              }
+            }),
+      ),
     );
   }
 }
