@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 const appId = "be5fc8ece3f94175882bc161f0db11dc";
 // const token = "";
 // const channel = "";
-const token = "007eJxTYMgNW7T7zCar0uTDix99Ot2i67HHIfHeljXhdb9mTDRhrN2owJCUapqWbJGanGqcZmliaG5qYWGUlGxoZphmkJJkaJiS7BnyMbUhkJHhVXw6CyMDBIL4PAyOBQX5mXklual5JYYMDABGUiVR";
+const token = "007eJxTYJDJ/PjqzNQDVSfTM+c5PZd5XfHmavbCpIk3nvFvaprBbB+rwJCUapqWbJGanGqcZmliaG5qYWGUlGxoZphmkJJkaJiSHOf6NbUhkJHhdscPZkYGCATxeRgcCwryM/NKclPzSgwZGAB00iYz";
 const channel = "Appointment1";
 
 void main() => runApp(const MaterialApp(home: AppointmentCallPage()));

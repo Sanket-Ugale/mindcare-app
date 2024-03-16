@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mindcare/community/Quotes/QuotesPage.dart';
+import 'package:mindcare/community/Stories/StoriesPage.dart';
+import 'package:mindcare/community/articles/ArticlesPage.dart';
+import 'package:mindcare/community/music/musicPage.dart';
 import 'package:mindcare/const/colors.dart';
 
 class CommunityPage extends StatefulWidget {
@@ -12,6 +16,7 @@ class CommunityPage extends StatefulWidget {
 class _CommunityPageState extends State<CommunityPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  final List<Widget> tabPages = [const ArticlesPage(), const MusicPage(), const StoriesPage(), const QuotesPage()];
   final List<String> tabNames = ["Articles", "Music", "Stories", "Quotes"];
 
   @override
@@ -27,7 +32,7 @@ class _CommunityPageState extends State<CommunityPage>
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.grey[900],
+            statusBarColor: Colors.black,
             statusBarIconBrightness: Brightness.light,
           ),
         ),
@@ -67,26 +72,23 @@ class _CommunityPageState extends State<CommunityPage>
                         Navigator.pop(context);
                       },
                     ),
-                    SizedBox(
-                      width: 40,
+                    const SizedBox(
+                      width: 70,
                     ),
-                    Text(
-                      "Community",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
+                    ValueListenableBuilder(
+                      valueListenable: tabController.animation!,
+                      builder: (context, value, child) {
+                        return Text(
+                          tabNames[tabController.index],
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        );
+                      },
                     ),
                   ],
                 ),
-                // Column(
-                //   children: [
-                //     Text("${tabNames[tabController.index]}",style: TextStyle(color:color1),),
-                //     const Divider(
-                //       color: Colors.white,
-                //     ),
-                //   ],
-                // ),
                 TabBar(
                   indicatorColor: color1,
                   labelColor: color1,
@@ -98,13 +100,7 @@ class _CommunityPageState extends State<CommunityPage>
                 Expanded(
                   child: TabBarView(
                     controller: tabController,
-                    children: tabNames
-                        .map((name) => Center(
-                                child: Text(
-                              name,
-                              style: TextStyle(color: color1),
-                            )))
-                        .toList(),
+                    children: tabPages,
                   ),
                 ),
               ],

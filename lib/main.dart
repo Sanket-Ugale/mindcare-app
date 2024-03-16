@@ -13,9 +13,8 @@ import 'package:mindcare/screens/error/noInternetError.dart';
 import 'package:mindcare/screens/home/screenList.dart';
 import 'package:mindcare/screens/reminders/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:timezone/data/latest.dart' as tz;
+
 void main() {
-  tz.initializeTimeZones();
   runApp(const MyApp());
 }
 

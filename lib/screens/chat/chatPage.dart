@@ -24,6 +24,7 @@ class chatPage extends StatefulWidget {
 class _chatPageState extends State<chatPage> {
   final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
+  bool _isAllChatLoading = false;
   final TextEditingController _controller = TextEditingController();
   List<Map<String, dynamic>> chatMessages = [];
 
@@ -61,6 +62,9 @@ class _chatPageState extends State<chatPage> {
   }
 
   Future<void> getMessages() async {
+    setState(() {
+      _isAllChatLoading=true;
+    });
     final response = await http
         .get(Uri.parse('https://mindcare-app.onrender.com/api/chats/'));
 
@@ -85,9 +89,13 @@ class _chatPageState extends State<chatPage> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _scrollController.animateTo(
           _scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 1000),
           curve: Curves.easeOut,
+          
         );
+        setState(() {
+          _isAllChatLoading=false;
+        });
       });
     } else {
       throw Exception('Failed to load chat messages.');
@@ -122,7 +130,8 @@ class _chatPageState extends State<chatPage> {
                   tileMode: TileMode.mirror,
                 ),
               ),
-              child: Column(
+              child: _isAllChatLoading?Center(child: CircularProgressIndicator(color: color1,))
+              :Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

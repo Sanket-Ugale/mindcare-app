@@ -64,6 +64,12 @@ dependencies:
   flutter_local_notifications: ^16.3.3
   flutter_background_service: ^5.0.5
   agora_rtc_engine: ^6.3.0
+  cron: ^0.6.0
+  android_alarm_manager_plus: ^3.0.4
+  audioplayers: ^5.2.1
+  just_audio: ^0.9.36
+  audio_service_web: ^0.1.1
+  audio_service: ^0.18.12
   # flutter_secure_storage: ^9.0.0
   # sqflite_sqlcipher: ^2.2.1
 
