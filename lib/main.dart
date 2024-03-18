@@ -14,6 +14,7 @@ import 'package:mindcare/screens/home/screenList.dart';
 import 'package:mindcare/screens/reminders/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+
 void main() {
   runApp(const MyApp());
 }

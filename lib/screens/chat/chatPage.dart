@@ -62,9 +62,9 @@ class _chatPageState extends State<chatPage> {
   }
 
   Future<void> getMessages() async {
-    setState(() {
-      _isAllChatLoading=true;
-    });
+    // setState(() {
+    //   _isAllChatLoading=true;
+    // });
     final response = await http
         .get(Uri.parse('https://mindcare-app.onrender.com/api/chats/'));
 
@@ -93,9 +93,9 @@ class _chatPageState extends State<chatPage> {
           curve: Curves.easeOut,
           
         );
-        setState(() {
-          _isAllChatLoading=false;
-        });
+        // setState(() {
+        //   _isAllChatLoading=false;
+        // });
       });
     } else {
       throw Exception('Failed to load chat messages.');

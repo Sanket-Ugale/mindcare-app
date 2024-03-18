@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 const appId = "be5fc8ece3f94175882bc161f0db11dc";
 // const token = "";
 // const channel = "";
-const token = "007eJxTYJDJ/PjqzNQDVSfTM+c5PZd5XfHmavbCpIk3nvFvaprBbB+rwJCUapqWbJGanGqcZmliaG5qYWGUlGxoZphmkJJkaJiSHOf6NbUhkJHhdscPZkYGCATxeRgcCwryM/NKclPzSgwZGAB00iYz";
+// const token = "007eJxTYIi/LC9y2cVY6Nd94af2F2TNf0jrMX7prRCSSb2lfzTgt7cCQ1KqaVqyRWpyqnGapYmhuamFhVFSsqGZYZpBSpKhYUryrYXfUhsCGRn0tV8yMEIhiM/D4FhQkJ+ZV5KbmldiyMAAABGAIkY=";
 const channel = "Appointment1";
 
 void main() => runApp(const MaterialApp(home: AppointmentCallPage()));
@@ -29,18 +30,32 @@ class _AppointmentCallPageState extends State<AppointmentCallPage> {
     super.initState();
     initAgora();
   }
+Future<String> getToken(int appointmentId) async {
+  final response = await http.get(
+    Uri.parse('https://mindcare-app.onrender.com/api/appointments/$appointmentId'),
+  );
 
+  if (response.statusCode == 200) {
+    List<dynamic> data = jsonDecode(response.body)['payload'];
+    if (data.isNotEmpty) {
+      return data[0]['appointment_token'];
+    }
+  }
+
+  throw Exception('Failed to load token');
+}
   Future<void> initAgora() async {
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
+ // get token
+  String token = await getToken(1); // replace 1 with your appointment ID
 
-    //create the engine
-    _engine = createAgoraRtcEngine();
-    await _engine.initialize(const RtcEngineContext(
-      appId: appId,
-      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
-    ));
-
+  //create the engine
+  _engine = createAgoraRtcEngine();
+  await _engine.initialize(const RtcEngineContext(
+    appId: appId,
+    channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+  ));
     _engine.registerEventHandler(
       RtcEngineEventHandler(
         onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
