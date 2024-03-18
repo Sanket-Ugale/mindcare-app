@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/screens/home/home.dart';
 import 'package:mindcare/widgets/quizRadioButton.dart';
@@ -86,8 +87,15 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
               ),
             ],
           ),
-          )       
-      );
+          ),);
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              duration: const Duration(milliseconds: 500),
+              type: PageTransitionType.fade,
+              child: quizSubmitPage(quizResultsJson: quizResultsJson),
+            ),
+          ); 
       
       } else {
         throw Exception(
