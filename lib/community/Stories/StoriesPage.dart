@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mindcare/const/colors.dart';
+import 'package:http/http.dart' as http;
+
 
 class StoriesPage extends StatefulWidget {
   const StoriesPage({super.key});
@@ -8,60 +14,39 @@ class StoriesPage extends StatefulWidget {
 }
 
 class StoriesPageState extends State<StoriesPage> {
-  List stories = [
-    {
-      "title": "Story Title 1",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title 2",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title 3",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title 4",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title 5",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Story Title",
-      "description": "Story Description",
-      "image": "https://source.unsplash.com/featured/300x203",
+  List stories = [];
+  bool isStoriesLoading = false;
+  
+  // get http => null;
+
+  Future<void> getStories() async {
+    setState(() {
+      isStoriesLoading = true;
+    });
+    var response = await http.get(
+      Uri.parse('https://mindcare-app.onrender.com/api/storie/'),
+    );
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        stories.add(data);
+      });
+      stories = stories[0];
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
     }
-  ];
+    print(stories);
+    setState(() {
+      isStoriesLoading = false;
+    });
+  }
   
   final PageController pageController = PageController();
+
+  void initState() {
+    super.initState();
+    getStories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +54,17 @@ class StoriesPageState extends State<StoriesPage> {
       decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
-      child: Scrollbar(
+      child: isStoriesLoading
+          ? Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                        color: color1, size: 55),
+                  
+            )
+          : stories.isEmpty
+              ? const Center(
+                  child: Text('No Quotes Found', style: TextStyle(color: Colors.white), ),
+                )
+              : Scrollbar(
         child: PageView.builder(
           controller: pageController,
           scrollDirection: Axis.vertical,
@@ -101,7 +96,7 @@ class StoriesPageState extends State<StoriesPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(stories[index]["image"]),
+                        child: Image.network("https://mindcare-app.onrender.com"+stories[index]["image"]),
                       ),
                       const SizedBox(height: 10),
                       Text(

@@ -77,10 +77,10 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          content: Row(
+          content: const Row(
             children: [
-              const Icon(Icons.check_circle, color: Colors.greenAccent),
-              const SizedBox(width: 10),
+              Icon(Icons.check_circle, color: Colors.greenAccent),
+              SizedBox(width: 10),
               Text(
                 'Quiz results saved successfully.',
                 style: TextStyle(color: Colors.white),
@@ -138,7 +138,7 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
     return _isupdatingResult
         ? Center(
             child: Container(
-              margin: EdgeInsets.only(top: 280.0),
+              margin: const EdgeInsets.only(top: 280.0),
               child: Column(
                 children: [
                   LoadingAnimationWidget.fourRotatingDots(
@@ -159,7 +159,7 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Padding(
-                  padding: EdgeInsets.only(top: 280.0),
+                  padding: const EdgeInsets.only(top: 280.0),
                   child: Center(
                     child: LoadingAnimationWidget.fourRotatingDots(
                         color: color1, size: 55),

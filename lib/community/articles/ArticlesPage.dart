@@ -1,4 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mindcare/const/colors.dart';
 
 class ArticlesPage extends StatefulWidget {
   const ArticlesPage({super.key});
@@ -8,61 +12,38 @@ class ArticlesPage extends StatefulWidget {
 }
 
 class ArticlesPageState extends State<ArticlesPage> {
-  List<Map<String, String>> articles = [
-  {
-    "title": "Article 1",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  {
-    "title": "Article 2",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-    {
-    "title": "Article 1",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  {
-    "title": "Article 2",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-    {
-    "title": "Article 1",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  {
-    "title": "Article 2",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-    {
-    "title": "Article 1",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  {
-    "title": "Article 2",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-    {
-    "title": "Article 1",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  {
-    "title": "Article 2",
-    "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.,",
-    "image": "https://source.unsplash.com/featured/300x203"
-  },
-  // ... and so on for the rest of the articles
-];
+  List articles =[];
+  bool isArticlesLoading = false;
+
+  Future getArticles() async {
+    setState(() {
+      isArticlesLoading = true;
+    });
+    var response = await http.get(
+      Uri.parse('https://mindcare-app.onrender.com/api/articles/'),
+    );
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        articles.add(data);
+      });
+      articles = articles[0];
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+    }
+    print(articles);
+    setState(() {
+      isArticlesLoading = false;
+    });
+  }
   
   final PageController pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    getArticles();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +51,17 @@ class ArticlesPageState extends State<ArticlesPage> {
       decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
-      child: Scrollbar(
+      child: isArticlesLoading
+          ? Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                        color: color1, size: 55),
+                  
+            )
+          : articles.isEmpty
+              ? const Center(
+                  child: Text('No Articles Found', style: TextStyle(color: Colors.white), ),
+                )
+              : Scrollbar(
         child: PageView.builder(
           controller: pageController,
           scrollDirection: Axis.vertical,
@@ -102,7 +93,7 @@ class ArticlesPageState extends State<ArticlesPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(articles[index]["image"]!),
+                        child: Image.network("https://mindcare-app.onrender.com"+articles[index]["image"]!),
                       ),
                       const SizedBox(height: 10),
                       Text(

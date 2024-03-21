@@ -1,35 +1,331 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/screens/appointment/appointmentCallPage.dart';
+import 'package:mindcare/screens/appointment/appointmentSchedulePage.dart';
 import 'package:page_transition/page_transition.dart';
 
-class appointmentPage extends StatelessWidget {
+class appointmentPage extends StatefulWidget {
   const appointmentPage({super.key});
 
   @override
+  State<appointmentPage> createState() => _appointmentPageState();
+}
+
+class _appointmentPageState extends State<appointmentPage> {
+  List specialists = [
+    {
+      "name": "Dr. Tom Doe",
+      "specialization": "Psychiatrist",
+      "location": "Bangalore",
+      "image": "assets/icons/userImage.png"
+    },
+    {
+      "name": "Dr. Jane Doe",
+      "specialization": "Psychologist",
+      "location": "New Delhi",
+      "image": "assets/icons/userImage.png"
+    },
+    {
+      "name": "Dr. Peter Smith",
+      "specialization": "Therapist",
+      "location": "Mumbai",
+      "image": "assets/icons/userImage.png"
+    },
+    {
+      "name": "Dr. George Gomes",
+      "specialization": "Psychiatrist",
+      "location": "Mumbai",
+      "image": "assets/icons/userImage.png"
+    },
+    {
+      "name": "Dr. Nancy Kaur",
+      "specialization": "Psychologist",
+      "location": "Gurugram",
+      "image": "assets/icons/userImage.png"
+    },
+    {
+      "name": "Dr. Uma Singh",
+      "specialization": "Therapist",
+      "location": "Mumbai",
+      "image": "assets/icons/userImage.png"
+    },
+  ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("APPOINTMENT's", style: TextStyle(letterSpacing: 5),),centerTitle: true,),
-      body: Container(
-        margin: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text("Schedule an Appointment"),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                padding: const EdgeInsets.all(20),
-              ),
-              onPressed: () {
-                Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: AppointmentCallPage()));
-              },
-              child: const Text("Join Call"),
-            ),
-          ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+            statusBarIconBrightness: Brightness.light,
+          ),
         ),
       ),
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height - 35,
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment(0.8, 1),
+              colors: <Color>[
+                Color.fromARGB(255, 0, 0, 0),
+                Color.fromARGB(255, 0, 55, 67),
+                Color.fromARGB(255, 0, 91, 111),
+              ],
+              tileMode: TileMode.mirror,
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                        const Row(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("Find Your",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold)),
+                                Text("Specialist",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 40,
+                            ),
+                            Image(
+                                image: AssetImage(
+                                  'assets/images/appointment1.png',
+                                ),
+                                height: 150,
+                                width: 150)
+                          ],
+                        ),
+                        Text(
+                          "Book an appointment with a Mental Health Specialist.",
+                          style: TextStyle(color: color1),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          child: TextFormField(
+                            cursorColor: Colors.white,
+                            style: const TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: "Search for a Specialist",
+                              hintStyle: const TextStyle(color: Colors.white),
+                              prefixIcon: const Icon(
+                                Icons.search,
+                                color: Colors.white,
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: const BorderSide(color: Colors.white)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: const BorderSide(color: Colors.white)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: const BorderSide(color: Colors.white)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Text(
+                          "Categories",
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(90, 255, 255, 255),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Icon(
+                                      Icons.telegram,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    "Psychiatrist",
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(90, 255, 255, 255),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: const Icon(
+                                      Icons.local_hospital,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    "Psychologist",
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(90, 255, 255, 255),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Icon(
+                                      Icons.health_and_safety,
+                                      color: color1,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    "Therapist",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Specialist Doctors",
+                          style: TextStyle(color: color1, fontSize: 25),
+                        ),
+                        ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: specialists.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        child: Container(
+                          margin: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(83, 255, 255, 255),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 25,
+                                        backgroundImage:
+                                            AssetImage(specialists[index]["image"]),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            specialists[index]["name"],
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Text(
+                                            specialists[index]["specialization"],
+                                            style: const TextStyle(color: Colors.white),
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.location_on,
+                                                color: Colors.white,
+                                                size: 15,
+                                              ),
+                                              Text(
+                                                specialists[index]["location"],
+                                                style: const TextStyle(color: Colors.white),
+                                              ),
+                                              const SizedBox(width: 20,),
+                                              const Text("4.5", style: TextStyle(color: Colors.white),),const Icon(Icons.star, color: Color.fromARGB(255, 251, 255, 0), size: 15,)
+                                            ],
+                                          )                                     ],
+                                      ),
+                                      const Spacer(),
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.add_circle_rounded,
+                                          size: 30,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: const AppointmentSchedulePage(),
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                onTap: (){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: AppointmentSchedulePage(),
+                                ));
+                                },
+                      );
+                            },
+                          ),
+                      ],
+                    ),
+                  ),
+          ),
+              ),
+            ),
     );
   }
 }

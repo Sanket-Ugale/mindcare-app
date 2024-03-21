@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mindcare/const/colors.dart';
 class QuotesPage extends StatefulWidget {
   const QuotesPage({super.key});
 
@@ -8,65 +11,57 @@ class QuotesPage extends StatefulWidget {
 }
 
 class QuotesPageState extends State<QuotesPage> {
-  List quotes=[
-    {
-      "title": "Quote Title",
-      "description": "You don't have to be positive all the time. It's perfectly okay to feel sad, angry, frustrated, scared, or anxious. Having feelings doesn't make you a negative person. It makes you human.",
-      "author": "ori Deschene",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "You are braver than you believe, stronger than you seem, and smarter than you think.",
-      "author": "A.A. Milne",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "The only way out is through.",
-      "author": "Robert Frost",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "You were given this life because you are strong enough to live it.",
-      "author": "Unknown",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "Your present circumstances don't determine where you can go; they merely determine where you start.",
-      "author": "Nido Qubein",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "The only way to do great work is to love what you do.",
-      "author": "Steve Jobs",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "The best way to predict the future is to create it.",
-      "author": "Peter Drucker",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-    {
-      "title": "Quote Title",
-      "description": "The only limit to our realization of tomorrow will be our doubts of today.",
-      "author": "Franklin D. Roosevelt",
-      "image": "https://source.unsplash.com/featured/300x203",
-    },
-
-  ];
+  List quotes = [];
+  bool isQuotesLoading = false;
   
+  Future<void> getQuotes() async {
+    setState(() {
+      isQuotesLoading = true;
+    });
+    var response = await http.get(
+      Uri.parse('https://mindcare-app.onrender.com/api/quotes/'),
+    );
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      setState(() {
+        quotes.add(data);
+        isQuotesLoading = false;
+      });
+      // print(quotes);
+      quotes=quotes[0];
+    } else {
+      print('Request failed with status: ${response.statusCode}.');
+      setState(() {
+        isQuotesLoading = false;
+      });
+    }
+  }
+
+@override
+
+  void initState() {
+    super.initState();
+    getQuotes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
-      child: Scrollbar(
+      child: isQuotesLoading
+          ? Center(
+              child: LoadingAnimationWidget.fourRotatingDots(
+                        color: color1, size: 55),
+                  
+            )
+          : quotes.isEmpty
+              ? const Center(
+                  child: Text('No Quotes Found'),
+                )
+              : 
+      Scrollbar(
         // trackVisibility: true,
 
         child: PageView.builder(
@@ -84,7 +79,7 @@ class QuotesPageState extends State<QuotesPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("\"${quotes[index]["description"]}\"", style: const TextStyle(fontSize: 15,color: Colors.white),),
+                  Text("\"${quotes[index]["quote"]}\"", style: const TextStyle(fontSize: 15,color: Colors.white),),
                   const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
