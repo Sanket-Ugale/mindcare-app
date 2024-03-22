@@ -8,14 +8,14 @@ import 'dart:convert';
 
 import 'package:mindcare/const/colors.dart';
 
-class tasksPage extends StatefulWidget {
-  tasksPage({Key? key}) : super(key: key);
+class TasksPage extends StatefulWidget {
+  TasksPage({Key? key}) : super(key: key);
 
   @override
-  _tasksPageState createState() => _tasksPageState();
+  _TasksPageState createState() => _TasksPageState();
 }
 
-class _tasksPageState extends State<tasksPage> {
+class _TasksPageState extends State<TasksPage> {
   final confettiController = ConfettiController(duration: const Duration(seconds: 1));
   List tasks = [];
   bool isLoading = true;

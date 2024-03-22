@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mindcare/const/colors.dart';
 
-class forgotpassPage extends StatefulWidget {
-  forgotpassPage({super.key});
+class ForgotpassPage extends StatefulWidget {
+  ForgotpassPage({super.key});
   bool isEmail = false;
 
   @override
-  State<forgotpassPage> createState() => _forgotpassPageState();
+  State<ForgotpassPage> createState() => _ForgotpassPageState();
 }
 
-class _forgotpassPageState extends State<forgotpassPage> {
+class _ForgotpassPageState extends State<ForgotpassPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,14 +4,13 @@ import 'package:mindcare/community/CommunityPage.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/const/functions.dart';
 import 'package:mindcare/screens/appointment/appointmentPage.dart';
+import 'package:mindcare/screens/appointment/appointments.dart';
 import 'package:mindcare/screens/chat/chatPage.dart';
-import 'package:mindcare/screens/faceSoul.dart';
 import 'package:mindcare/screens/profile/profilePage.dart';
 import 'package:mindcare/screens/quiz/quizPage.dart';
 import 'package:mindcare/screens/reminders/reminderPage.dart';
 import 'package:mindcare/screens/scenarioPage.dart';
 import 'package:mindcare/screens/wearcare/wearCare.dart';
-import 'package:mindcare/widgets/ConnectivityWidgetWrapper.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:circular_seek_bar/circular_seek_bar.dart';
 
@@ -537,7 +536,7 @@ class _homeScreenPageState extends State<homeScreenPage> {
                       PageTransition(
                         duration: const Duration(milliseconds: 100),
                         type: PageTransitionType.fade,
-                        child: const appointmentPage(),
+                        child: const AppointmentMainPage(),
                       ),
                     );
                   },

@@ -17,8 +17,8 @@ import 'package:mindcare/screens/splash/splashScreen.dart';
 import 'package:mindcare/screens/authentication/verifyOTPpage.dart';
 import 'package:page_transition/page_transition.dart';
 
-class screenList extends StatelessWidget {
-  const screenList({super.key});
+class ScreenList extends StatelessWidget {
+  const ScreenList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +167,7 @@ class screenList extends StatelessWidget {
                       PageTransition(
                         duration: const Duration(milliseconds: 400),
                         type: PageTransitionType.fade,
-                        child: signupPage(),
+                        child: SignupPage(),
                       ),
                     );
                   },
@@ -237,7 +237,7 @@ class screenList extends StatelessWidget {
                       PageTransition(
                         duration: const Duration(milliseconds: 400),
                         type: PageTransitionType.fade,
-                        child: forgotpassPage(),
+                        child: ForgotpassPage(),
                       ),
                     );
                   },
@@ -299,7 +299,7 @@ class screenList extends StatelessWidget {
                       context,
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const appointmentPage(),
+                            const AppointmentPage(),
                       ),
                     );
                   },

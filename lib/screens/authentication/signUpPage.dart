@@ -4,15 +4,15 @@ import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/screens/authentication/loginPage.dart';
 import 'package:mindcare/screens/home/privacyPolicyPage.dart';
 
-class signupPage extends StatefulWidget {
-  signupPage({super.key});
+class SignupPage extends StatefulWidget {
+  SignupPage({super.key});
   bool isEmail = false;
 
   @override
-  State<signupPage> createState() => _signupPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _signupPageState extends State<signupPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

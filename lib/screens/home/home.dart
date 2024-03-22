@@ -16,7 +16,7 @@ class _homePageState extends State<homePage> {
   // int _currentIndex = 0;
 
   int _selectedItem = 0;
-  var pagaList = [homeScreenPage(), tasksPage(), analysisPage()];
+  var pagaList = [homeScreenPage(), TasksPage(), analysisPage()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

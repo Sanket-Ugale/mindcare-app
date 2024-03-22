@@ -295,7 +295,7 @@ class _loginPageState extends State<loginPage> {
                           child: Row(
                             children: [
                               Checkbox(
-                                overlayColor:MaterialStatePropertyAll(Colors.amber),
+                                overlayColor:const MaterialStatePropertyAll(Colors.amber),
                                 checkColor: Colors.white,
                                 activeColor: Colors.green.shade300,
                                 value: isRememberClicked,
@@ -320,11 +320,11 @@ class _loginPageState extends State<loginPage> {
                                 context,
                                 MaterialPageRoute<void>(
                                   builder: (BuildContext context) =>
-                                      forgotpassPage(),
+                                      ForgotpassPage(),
                                 ),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               "Forgot Password ?",
                               style: TextStyle(color: Colors.amber),
                             )),
@@ -343,11 +343,11 @@ class _loginPageState extends State<loginPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Response'),
+              title: const Text('Response'),
               content: Text(response),
               actions: <Widget>[
                 TextButton(
-                  child: Text('OK'),
+                  child: const Text('OK'),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -442,7 +442,7 @@ class _loginPageState extends State<loginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute<void>(
-                              builder: (BuildContext context) => signupPage(),
+                              builder: (BuildContext context) => SignupPage(),
                             ),
                           );
                         },

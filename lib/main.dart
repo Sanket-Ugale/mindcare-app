@@ -81,7 +81,7 @@ class _MyAppState extends State<MyApp> {
       // Good to go!
     } else {
       // Request permissions
-      Map<Permission, PermissionStatus> statuses = await [
+      await [
         Permission.storage,
         Permission.photos,
         Permission.videos,
@@ -93,8 +93,8 @@ class _MyAppState extends State<MyApp> {
         Permission.sms,
       ].request();
 
-      final info = statuses[Permission.storage].toString();
-      print(info);
+      // final info = statuses[Permission.storage].toString();
+      // print(info);
     }
   }
 
@@ -120,6 +120,7 @@ class _MyAppState extends State<MyApp> {
         isDeviceConnected = await InternetConnectionChecker().hasConnection;
       });
 
+  @override
   void dispose() {
     // Allow the system to handle screen orientation again when the app is disposed.
     SystemChrome.setPreferredOrientations(DeviceOrientation.values);
@@ -147,9 +148,9 @@ class _MyAppState extends State<MyApp> {
           stream: Connectivity().onConnectivityChanged,
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data != ConnectivityResult.none) {
-              return isUnderMaintainace ? maintainancePage() : screenList();
+              return isUnderMaintainace ? const maintainancePage() : const ScreenList();
             } else {
-              return noInternetPage();
+              return const noInternetPage();
             }
           },
         ),
