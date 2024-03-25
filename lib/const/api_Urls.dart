@@ -7,6 +7,7 @@ const String reset_password_api='$url/auth/resetPassword/';
 const String forgot_password_api='$url/auth/forgotPassword/';
 const String chat_api='$url/api/chats/';
 const String user_profile_api='$url/auth/user/profile/';
+const String mentor_profile_api='$url/auth/mentor/profile/';
 const String appointment_api='$url/api/appointments/';
 const String contact_us_api='$url/api/contactus/';
 const String tasks_api='$url/api/tasks/';
