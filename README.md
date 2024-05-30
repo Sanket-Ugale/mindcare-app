@@ -5,7 +5,7 @@
 ## App Screenshots
 
 <div class="gallery">
-    <img src="https://github.com/Sanket-Ugale/mindcare/assets/121743571/1dee4fb8-80a1-4e3f-8af2-fb46ae755042" alt="Screenshot 1">
+<img src="https://github.com/Sanket-Ugale/mindcare/assets/121743571/b22e45c8-6a76-4331-bb02-95a15d2aa57b" alt="Screenshot 1">
     <img src="https://github.com/Sanket-Ugale/mindcare/assets/121743571/77465e0c-164f-4162-a860-ec2b5a8fe448" alt="Screenshot 2">
     <img src="https://github.com/Sanket-Ugale/mindcare/assets/121743571/bbb6f5d9-5c02-4d84-a86e-2ba503a51f62" alt="Screenshot 3">
     <img src="https://github.com/Sanket-Ugale/mindcare/assets/121743571/f8e8b6ce-db4a-44ed-a5e1-b976cdfb78e2" alt="Screenshot 4">
