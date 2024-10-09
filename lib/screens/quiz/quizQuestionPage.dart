@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:mindcare/const/api_Urls.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/screens/home/home.dart';
 import 'package:mindcare/widgets/quizRadioButton.dart';
@@ -59,7 +60,7 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
     });
     try {
       final response = await http.post(
-        Uri.parse('https://mindcare-app.onrender.com/api/quizresult/'),
+        Uri.parse(domain_url+'/api/quizresult/'),
         // 
         // Uri.parse('http://localhost:8000/api/quiz/'),
         headers: <String, String>{
@@ -121,7 +122,7 @@ class _quizQuestionPageaState extends State<quizQuestionPagea> {
 
   Future<List<dynamic>> fetchQuizQuestions() async {
     final response = await http
-        .get(Uri.parse('https://mindcare-app.onrender.com/api/quizquestion/'));
+        .get(Uri.parse(domain_url+'/api/quizquestion/'));
 
     if (response.statusCode == 200) {
       // return jsonDecode(response.body);

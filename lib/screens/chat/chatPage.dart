@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mindcare/const/api_Urls.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:mindcare/widgets/botChatContainer.dart';
 import 'package:mindcare/widgets/userChatContainer.dart';
@@ -38,7 +39,7 @@ class _chatPageState extends State<chatPage> {
     });
 
     final response = await http.post(
-      Uri.parse('https://mindcare-app.onrender.com/api/chats/'),
+      Uri.parse(domain_url+'/api/chats/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -66,7 +67,7 @@ class _chatPageState extends State<chatPage> {
     //   _isAllChatLoading=true;
     // });
     final response = await http
-        .get(Uri.parse('https://mindcare-app.onrender.com/api/chats/'));
+        .get(Uri.parse(domain_url+'/api/chats/'));
 
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);

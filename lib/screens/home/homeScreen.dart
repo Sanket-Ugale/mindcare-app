@@ -337,7 +337,7 @@ class _homeScreenPageState extends State<homeScreenPage> {
                       PageTransition(
                         duration: const Duration(milliseconds: 400),
                         type: PageTransitionType.fade,
-                        child: wearCare(),
+                        child: WearCare(),
                       ),
                     );
                   },
@@ -400,7 +400,7 @@ class _homeScreenPageState extends State<homeScreenPage> {
                       PageTransition(
                         duration: const Duration(milliseconds: 100),
                         type: PageTransitionType.fade,
-                        child: const scenarioPage(),
+                        child: ScenarioQuizPage(),
                       ),
                     );
                     // setState(() {

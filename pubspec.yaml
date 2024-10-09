@@ -63,7 +63,7 @@ dependencies:
   sqflite: ^2.3.2
   flutter_local_notifications: ^16.3.3
   flutter_background_service: ^5.0.5
-  agora_rtc_engine: ^6.3.0
+  # agora_rtc_engine: ^6.3.0
   cron: ^0.6.0
   android_alarm_manager_plus: ^3.0.4
   audioplayers: ^5.2.1
@@ -73,6 +73,7 @@ dependencies:
   loading_animation_widget: ^1.2.1
   # flutter_secure_storage: ^9.0.0
   # sqflite_sqlcipher: ^2.2.1
+  flutter_emoji: ^2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -117,7 +118,7 @@ flutter:
   fonts:
     - family: poppins
       fonts:
-        - asset: assets/fonts/Poppins-black.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
         - asset: assets/fonts/Poppins-BlackItalic.ttf
         - asset: assets/fonts/Poppins-Bold.ttf
         - asset: assets/fonts/Poppins-Medium.ttf

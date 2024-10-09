@@ -95,7 +95,7 @@ class AappointmentSchedulePageState extends State<AppointmentSchedulePage> {
                   Hero(
                     tag: widget.id,
                     child: Image(
-                      image: NetworkImage(url + widget.image.toString()),
+                      image: NetworkImage(domain_url + widget.image.toString()),
                       height: 200,
                       width: 200,
                     ),
@@ -358,7 +358,7 @@ class AappointmentSchedulePageState extends State<AppointmentSchedulePage> {
   
   void bookAppointment(int id,) async {
     // perform the booking operation here on 
-    var response = await http.post(Uri.parse("https://mindcare-app.onrender.com/api/appointments/"),
+    var response = await http.post(Uri.parse(domain_url+"/api/appointments/"),
             headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

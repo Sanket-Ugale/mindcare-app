@@ -472,8 +472,7 @@ class _MusicPageState extends State<MusicPage> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Color.fromARGB(197, 0, 55, 67),
+                          foregroundColor: Color.fromARGB(197, 0, 55, 67), backgroundColor: Colors.white,
                         ),
                         child: isAudioPlaying[index]
                             ? const Icon(Icons.pause)

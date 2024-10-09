@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mindcare/community/Quotes/QuotesPage.dart';
 import 'package:mindcare/community/Stories/StoriesPage.dart';
 import 'package:mindcare/community/articles/ArticlesPage.dart';
-import 'package:mindcare/community/music/musicPage.dart';
+import 'package:mindcare/community/music/MusicPage.dart';
+import 'package:mindcare/community/quotes/QuotesPage.dart';
 import 'package:mindcare/const/colors.dart';
 
 class CommunityPage extends StatefulWidget {

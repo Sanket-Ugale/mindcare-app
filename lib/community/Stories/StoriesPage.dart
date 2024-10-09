@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mindcare/const/api_Urls.dart';
 import 'package:mindcare/const/colors.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,7 +25,7 @@ class StoriesPageState extends State<StoriesPage> {
       isStoriesLoading = true;
     });
     var response = await http.get(
-      Uri.parse('https://mindcare-app.onrender.com/api/storie/'),
+      Uri.parse(domain_url+'/api/storie/'),
     );
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
@@ -96,7 +97,7 @@ class StoriesPageState extends State<StoriesPage> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network("https://mindcare-app.onrender.com"+stories[index]["image"]),
+                        child: Image.network(domain_url+stories[index]["image"]),
                       ),
                       const SizedBox(height: 10),
                       Text(

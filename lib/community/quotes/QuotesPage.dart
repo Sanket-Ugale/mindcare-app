@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:mindcare/const/api_Urls.dart';
 import 'package:mindcare/const/colors.dart';
 class QuotesPage extends StatefulWidget {
   const QuotesPage({super.key});
@@ -19,7 +20,7 @@ class QuotesPageState extends State<QuotesPage> {
       isQuotesLoading = true;
     });
     var response = await http.get(
-      Uri.parse('https://mindcare-app.onrender.com/api/quotes/'),
+      Uri.parse(domain_url+'/api/quotes/'),
     );
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);

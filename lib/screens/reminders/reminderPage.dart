@@ -126,8 +126,7 @@ class _ReminderPageState extends State<ReminderPage> {
                           SizedBox(height: 20),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                minimumSize: const Size(150, 50),
-                                primary: Colors.white,
+                                minimumSize: const Size(150, 50), backgroundColor: Colors.white,
                                 surfaceTintColor: Colors.black,
                                 shadowColor: Colors.black,
                                 elevation: 10,

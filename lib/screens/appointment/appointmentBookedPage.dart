@@ -142,10 +142,10 @@ class _AppointmentBookedPageState extends State<AppointmentBookedPage> {
                           if (appointments[index]['status'] == "Confirmed")
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const AppointmentCallPage()));
+                                // Navigator.push(context, MaterialPageRoute(builder: (context) => const AppointmentCallPage()));
                               },
                               style: ElevatedButton.styleFrom(
-                                  primary: const Color.fromARGB(71, 255, 255, 255)),
+                                  backgroundColor: const Color.fromARGB(71, 255, 255, 255)),
                               child: Row(
                                 children: [
                                   Text(

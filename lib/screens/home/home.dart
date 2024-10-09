@@ -16,7 +16,7 @@ class _homePageState extends State<homePage> {
   // int _currentIndex = 0;
 
   int _selectedItem = 0;
-  var pagaList = [homeScreenPage(), TasksPage(), analysisPage()];
+  var pageList = [homeScreenPage(), TasksPage(), AnalysisPage()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -53,7 +53,7 @@ class _homePageState extends State<homePage> {
               tileMode: TileMode.mirror,
             ),
           ),
-          child: pagaList[_selectedItem],
+          child: pageList[_selectedItem],
         ),
         bottomNavigationBar: Container(
           margin: EdgeInsets.all(40.r),

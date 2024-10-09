@@ -124,7 +124,7 @@ class splashScreenPage extends StatelessWidget {
                       style: TextStyle(color: color1, fontSize: 60.sp),
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: lightTextColor3,
+                      backgroundColor: lightTextColor3,
                       
                       padding: EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
                       shape: RoundedRectangleBorder(

@@ -23,7 +23,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
       isLoadingMentor = true;
     });
     var uri =
-        Uri.parse("https://mindcare-app.onrender.com/auth/mentor/profile/");
+        Uri.parse(domain_url+"/auth/mentor/profile/");
     var response = await http.get(uri);
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
@@ -266,7 +266,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                                             backgroundColor: color1,
                                             radius: 25,
                                             backgroundImage: NetworkImage(
-                                                url + specialists[index]["image"],
+                                                domain_url + specialists[index]["image"],
                                                 scale: 1.0),
                                           ),
                                         ),
